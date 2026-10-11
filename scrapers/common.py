@@ -143,14 +143,18 @@ class Fetcher:
             self.robots.parse([])
             log.debug("robots.txt returned %s: no restrictions assumed", resp.status_code)
 
-    def get(self, url: str) -> str:
+    def get_json(self, url: str):
+        """GET a JSON API endpoint (same politeness rules as `get`)."""
+        return json.loads(self.get(url, headers={"Accept": "application/json"}))
+
+    def get(self, url: str, headers: dict | None = None) -> str:
         if not self.robots.can_fetch(USER_AGENT, url):
             raise RobotsDisallowed(f"robots.txt disallows: {url}")
         wait = self.delay - (time.monotonic() - self._last)
         if wait > 0:
             time.sleep(wait)
         started = time.monotonic()
-        resp = self.session.get(url, timeout=self.timeout)
+        resp = self.session.get(url, timeout=self.timeout, headers=headers)
         self._last = time.monotonic()
         log.debug(
             "GET %s -> %s, %.1f KB, %.2fs",
@@ -159,8 +163,9 @@ class Fetcher:
         if DUMP_DIR is not None:
             DUMP_DIR.mkdir(parents=True, exist_ok=True)
             name = re.sub(r"[^A-Za-z0-9._-]+", "_", re.sub(r"^https?://", "", url))[:150] or "index"
-            (DUMP_DIR / f"{name}.html").write_text(resp.text, encoding="utf-8")
-            log.debug("Saved raw HTML to %s", DUMP_DIR / f"{name}.html")
+            ext = "json" if "json" in resp.headers.get("Content-Type", "") else "html"
+            (DUMP_DIR / f"{name}.{ext}").write_text(resp.text, encoding="utf-8")
+            log.debug("Saved raw response to %s", DUMP_DIR / f"{name}.{ext}")
         resp.raise_for_status()
         return resp.text
 

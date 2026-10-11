@@ -36,6 +36,7 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
 | GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
 | Bugbop | `data/bugbop_data.json` | `bugbop.yml` | implemented, to be validated on the first real run |
+| WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | implemented from real API responses, to be validated on the first real run |
 
 ## Free-text scopes
 
@@ -76,6 +77,16 @@ explicit heading (`Scope`, `In scope`, `Targets`, `Out of scope`...) or after an
 `In scope:` / `Not in scope:` line. Sections such as `Exclusions` list vulnerability classes
 (DoS, spam), not assets, and are ignored. `Restricted` programs get `public: false`, programs with
 `Bounty: Paused` get `disabled: true` (their amounts then come from the Rewards table).
+
+### WhiteHub
+
+WhiteHub is a SPA over a public JSON API (`api.cystack.net`), so there is no scraping of HTML:
+the list gives the programs, the per-program endpoint gives a **structured** `target[]` list
+(name, type, scope). The markdown description is prose and is not used. `visibility != public`
+gives `public: false` (such programs are unreadable and have no scope), `status: locked` gives
+`disabled: true`, `is_wh_managed` gives `managed`. Most programs pay in VND, so their bounty is
+`null` (see below). Target types other than `source_code` have not been seen yet: unknown ones are
+kept (slugified) and logged at INFO as `Unknown WhiteHub target type ...`.
 
 Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no
 currency field); anything else, or mixed currencies, gives `null`.

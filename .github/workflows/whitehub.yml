@@ -1,0 +1,60 @@
+name: update-whitehub
+
+on:
+  schedule:
+    # Twice a day (UTC). Use a different minute for each platform so that the
+    # workflows do not all push at exactly the same time.
+    - cron: "51 7,19 * * *"
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "Verbose output (every HTTP request, per-program scope counts)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Only one run at a time for this platform.
+concurrency:
+  group: update-whitehub
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"  # live progress lines in the Actions log
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Scrape WhiteHub
+        env:
+          SCRAPER_USER_AGENT: "bounty-scopes-bot/0.1 (+https://github.com/${{ github.repository }})"
+        run: python -m scrapers.whitehub ${{ inputs.debug && '--verbose' || '' }}
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/whitehub_data.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "whitehub: update $(date -u +'%Y-%m-%d %H:%M') UTC"
+          # The workflows of the other platforms push to the same branch too.
+          for i in 1 2 3 4 5; do
+            git pull --rebase && git push && exit 0
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Push failed after 5 attempts" >&2
+          exit 1
