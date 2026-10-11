@@ -1,4 +1,5 @@
 """Fetcher tests against a real local HTTP server (no internet needed)."""
+import json
 import logging
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -20,6 +21,19 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def do_POST(self):
+        length = int(self.headers.get("Content-Length") or 0)
+        body = self.rfile.read(length)
+        if self.path == "/echo":
+            self._send(200, json.dumps({"got": json.loads(body or b"{}"),
+                                        "ctype": self.headers.get("Content-Type"),
+                                        "accept": self.headers.get("Accept"),
+                                        "origin": self.headers.get("Origin")}).encode(), "application/json")
+        elif self.path == "/private":
+            self._send(200, b"{}", "application/json")
+        else:
+            self._send(404)
 
     def do_GET(self):
         if self.path == "/robots.txt":
@@ -73,3 +87,18 @@ def test_dump_html_saves_raw_pages(server, tmp_path, monkeypatch):
     f.get(f"{server}/ok")
     files = list(tmp_path.glob("*.html"))
     assert len(files) == 1 and files[0].read_text() == "hello"
+
+
+def test_post_json_sends_body_json_headers_and_no_spoofed_origin(server, caplog):
+    f = common.Fetcher(server, delay=0, backoff=0)
+    with caplog.at_level(logging.DEBUG, logger="scrapers"):
+        out = f.post_json(f"{server}/echo", {"take": 10, "skip": 0})
+    assert out == {"got": {"take": 10, "skip": 0}, "ctype": "application/json",
+                   "accept": "application/json", "origin": None}
+    assert f"POST {server}/echo -> 200" in caplog.text
+
+
+def test_post_respects_robots(server):
+    f = common.Fetcher(server, delay=0, backoff=0)
+    with pytest.raises(common.RobotsDisallowed):
+        f.post_json(f"{server}/private", {})

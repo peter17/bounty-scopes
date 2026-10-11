@@ -56,14 +56,16 @@ def test_policy_template_is_not_scope():
     assert all("organization" not in e["target"].lower() for e in p["targets"]["in_scope"])
 
 
-def test_bounty_is_null_while_currency_is_unconfirmed(monkeypatch):
-    assert bugzero.minimum_bounty(LIST[0]) is None
-    assert bugzero.build_program(LIST[0], REAL_DRAWIFY)["min_bounty"] is None
-    monkeypatch.setattr(bugzero, "MINIMUM_BOUNTY_CURRENCY", "USD")
-    assert bugzero.minimum_bounty(LIST[0]) == 5
+def test_minimum_bounty_is_usd_and_there_is_no_maximum():
+    assert bugzero.MINIMUM_BOUNTY_CURRENCY == "USD"
+    p = bugzero.build_program(LIST[0], REAL_DRAWIFY)
+    assert (p["min_bounty"], p["max_bounty"]) == (5, None)
     assert bugzero.minimum_bounty(LIST[2]) is None  # "" = no bounty
-    p = bugzero.build_program(LIST[1], SYNTHETIC)
-    assert (p["min_bounty"], p["max_bounty"]) == (10, None)  # the API has no maximum
+
+
+def test_bounty_is_null_if_currency_is_unknown(monkeypatch):
+    monkeypatch.setattr(bugzero, "MINIMUM_BOUNTY_CURRENCY", None)
+    assert bugzero.minimum_bounty(LIST[0]) is None
 
 
 def test_scope_split_types_and_blank_identifier(caplog):

@@ -104,8 +104,8 @@ def guess_type(token: str) -> str:
         return "api"
     if host in ("github.com", "gitlab.com", "bitbucket.org") and "/" in low.split(host, 1)[1]:
         return "other"
-    if re.fullmatch(r"\d{1,3}(?:\.\d{1,3}){3}(?:/\d{1,2})?", host.split("/")[0] if "/" in host else low):
-        return "other"
+    if re.fullmatch(r"\d{1,3}(?:\.\d{1,3}){3}(?:/\d{1,2})?", low):
+        return "ip-address"
     return "web-application"
 
 
@@ -154,13 +154,17 @@ def entries_from_line(line: str, mode: str = "in") -> list[dict]:
 
 
 def split_scope_lines(
-    lines: list[str], initial_mode: str = "in"
+    lines: list[str], initial_mode: str = "in", keep_statements: bool = False
 ) -> tuple[list[dict], list[dict]]:
     """Turn the raw lines of a scope section into (in_scope, out_of_scope) entries.
 
     `initial_mode` is "in" (default), "out", or "ignore": in "ignore" nothing is extracted until
     an explicit "In scope" / "Not in scope" header line is met (for prose that may or may not
     contain a scope list).
+
+    `keep_statements`: for lines already known to sit under an explicit scope heading (markdown
+    "### Scope"), short token-less lines ("Any S3 bucket holding customer data") are kept as
+    `other` entries instead of being dropped as titles/descriptions.
 
     `ASSET_BREAK` lines mark the start of a structured asset (title line first): the mode
     resets to "in" for it, or to "skip" if the title is purely informational.
@@ -210,8 +214,11 @@ def split_scope_lines(
             out_scope.extend(entries)
         else:
             in_scope.extend(entries)
-            if not entries and explicit_in and len(item.split()) <= MAX_IN_NOTE_WORDS:
-                notes.append(item)
+            if not entries and len(item.split()) <= MAX_IN_NOTE_WORDS:
+                if keep_statements:
+                    in_scope.append({"target": item, "type": "other"})
+                elif explicit_in:
+                    notes.append(item)
     if not in_scope and notes:
         in_scope = [{"target": n, "type": "other"} for n in notes[:MAX_IN_NOTES]]
     return in_scope, out_scope
@@ -236,3 +243,18 @@ def entries_from_asset_titles(titles: list[str]) -> list[dict]:
         if entry not in out:
             out.append(entry)
     return out[:MAX_IN_NOTES]
+
+
+_MD_HEADING_RE = re.compile(r"^\s*#{1,6}\s+(?P<title>.*?)\s*#*\s*$")
+
+
+def markdown_sections(text: str) -> list[tuple[str | None, list[str]]]:
+    """Split markdown into [(heading title or None, non-empty lines)]. Only ATX headings
+    ("### Scope") are recognised; everything else is a line of the current section."""
+    sections: list[tuple[str | None, list[str]]] = [(None, [])]
+    for raw in text.splitlines():
+        if m := _MD_HEADING_RE.match(raw):
+            sections.append((m.group("title"), []))
+        elif raw.strip():
+            sections[-1][1].append(raw.strip())
+    return sections

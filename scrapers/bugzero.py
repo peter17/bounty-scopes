@@ -18,9 +18,8 @@ Mapping:
   disabled  = False  (the API has no status field)
   managed   = None
   bounty    = minimum_bounties, ONLY if MINIMUM_BOUNTY_CURRENCY is a known comparable currency.
-              The API gives no currency: it is left unconfirmed (None) on purpose, so min/max are
-              null. Set the constant to "USD" (or the right currency) once confirmed on the site.
-              There is no maximum in the API.
+              The API gives no currency; it is USD (confirmed on the site). There is no maximum
+              in the API, so max_bounty is always null.
 
 Only type seen so far: "Domain". Unknown types are kept (slugified) and logged at INFO.
 """
@@ -49,8 +48,8 @@ BASE_URL = "https://us-central1-bug-zero.cloudfunctions.net"
 LIST_PATH = "/api/programs"
 DETAIL_PATH = "/api/organization/{handle}"
 
-# Currency of `minimum_bounties`. UNCONFIRMED: the API does not say. Keep None until checked.
-MINIMUM_BOUNTY_CURRENCY: str | None = None
+# Currency of `minimum_bounties`: the API does not say, USD was confirmed on the platform.
+MINIMUM_BOUNTY_CURRENCY: str | None = "USD"
 
 # Bugzero scope type (lower case) -> reference type. Only "domain" is confirmed on real data.
 TYPE_MAP = {

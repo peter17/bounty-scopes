@@ -25,8 +25,9 @@ dedicated GitHub Actions workflow, **twice a day**.
 ]
 ```
 
-Types used: `web-application`, `api`, `mobile-application-ios`,
-`mobile-application-android`, `smart-contract`, `protocol`, `blockchain`, `application`, `other`
+Types used: `web-application`, `wildcard`, `api`, `mobile-application`, `mobile-application-ios`,
+`mobile-application-android`, `ip-address`, `source-code`, `smart-contract`, `protocol`,
+`blockchain`, `application`, `other`
 (a type unknown to us is kept as a slug of the platform's own label).
 
 ## Platforms
@@ -36,8 +37,9 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
 | GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
 | Bugbop | `data/bugbop_data.json` | `bugbop.yml` | validated on a real run |
-| WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | implemented from real API responses, to be validated on the first real run |
-| Bugzero | `data/bugzero_data.json` | `bugzero.yml` | implemented from real API responses, to be validated on the first real run |
+| WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | validated on a real run |
+| Bugzero | `data/bugzero_data.json` | `bugzero.yml` | validated on a real run |
+| CrowdSwarm | `data/crowdswarm_data.json` | `crowdswarm.yml` | implemented from real API responses, to be validated on the first real run |
 
 ## Free-text scopes
 
@@ -94,10 +96,22 @@ kept (slugified) and logged at INFO as `Unknown WhiteHub target type ...`.
 Bugzero is a SPA over public JSON endpoints (Cloud Functions): `/api/programs` lists the programs
 and `/api/organization/<handle>` gives a **structured** `programData.scope[]` (`type`,
 `identifier`, `submission`: "In Scope" / "Out of Scope"). The `policy` markdown is a generic
-template and is not read. The API gives a `minimum_bounties` but **no currency** and no maximum, so
-`min_bounty` is `null` until `MINIMUM_BOUNTY_CURRENCY` in `scrapers/bugzero.py` is set to the
-confirmed currency (e.g. `"USD"`). The API has no status field either, so `disabled` is always
-`false`. Only the `Domain` type has been seen; unknown types are kept and logged at INFO.
+template and is not read. The API gives a `minimum_bounties` but no currency and no maximum:
+the currency is USD (confirmed on the platform, `MINIMUM_BOUNTY_CURRENCY` in
+`scrapers/bugzero.py`) and `max_bounty` is always `null`. The API has no status field either, so
+`disabled` is always `false`. Only the `Domain` type has been seen; unknown types are kept and logged at INFO.
+
+### CrowdSwarm
+
+CrowdSwarm is a SPA over a public JSON API that uses **POST** for its read-only queries
+(`/api/v1.0/public-program/get-all` with `{"take": 10, "skip": N}`). Every program in the list
+already carries its full markdown `details`, so no per-program request is made. The scope is read
+from the markdown headings: `### Scope`, `### Scope Platform`, `### Scope IP Address`... are in
+scope (short bullets without a URL are kept as `other`), `Out of scope` headings are out of scope,
+and everything else (rules, `NOT ALLOWED` activities, `Non-qualifying Vulnerabilities`, legal
+terms) is ignored. The API gives `minReward` / `maxReward` but no currency, so the bounty is `null`
+until `REWARD_CURRENCY` in `scrapers/crowdswarm.py` is set. The `comments` field is **never read**:
+it is written by anonymous users and contains raw XSS payloads.
 
 Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no
 currency field); anything else, or mixed currencies, gives `null`.

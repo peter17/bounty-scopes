@@ -1,0 +1,73 @@
+{
+ "totalCount": 2,
+ "list": [
+  {
+   "description": "A Global Social Impact and Crowdfunding Platform for Visionary Muslims",
+   "details": "\n### Sadaqah - Ummah Crowdfunding\n\nsadaqah.io welcomes security researchers to review our public-facing defenses with an objective and professional eye.\n\nThe Sadaqah - Ummah Crowdfunding platform is a Global Social Impact and Crowdfunding Platform for Visionary Muslims where donors are at the center of the giving journey. \n\n### Program Rules\n\nPlease provide detailed reports with reproducible steps.\n\nIf the report is not detailed enough to reproduce the issue, the issue will not be eligible for a reward.\n\n### The following activities are NOT ALLOWED\n\n    Publicly disclosing vulnerabilities\n    Copying, changing or deleting data or systems\n    Causing damage, abuse, spamming\n    Placing malware or backdoors\n    Executing DoS or resource exhaustion attacks\n    Causing interruption or impediment of sadaqah.io’s services and operation\n    Using social engineering techniques\n    Brute-forcing credentials of sadaqah.io customers or partners\n    Exposing sensitive or customer data\n\n### Non-qualifying Vulnerabilities:\n\n    Clickjacking on pages with no sensitive actions.\n    SPF/DMARC records\n    DNS vulnerabilities\n    Non-security-impacting UX issues\n    Invalid or missing SPF (Sender Policy Framework) records (Incomplete or missing SPF/DKIM)\n    Missing best practices in SSL/TLS configuration.\n\n### Scope Platform\n\n    - https://sadaqah.io\n    - https://community.sadaqah.io\n    - https://analytics.sadaqah.io\n    - https://sadaqah.io/blog/\n\n### Scope IP Address\n\n    - 3.23.218.108\n\n### Scope S3 Buckets\n\n    - Any S3 Buckets Detecting Sensitive Classified Information\n\n",
+   "id": "RaHeZNP2i0GdAgn",
+   "tags": null,
+   "title": "Sadaqah - Ummah Crowdfunding",
+   "companyName": "Sadaqah - Ummah Crowdfunding",
+   "launchedDate": "2021-03-28T06:08:37",
+   "maxReward": 250.0,
+   "minReward": 100.0,
+   "minimumLevelId": "1",
+   "rewardPlans": [
+    {
+     "issueLevelId": "1",
+     "rewardAmount": 100.0
+    },
+    {
+     "issueLevelId": "2",
+     "rewardAmount": 200.0
+    },
+    {
+     "issueLevelId": "3",
+     "rewardAmount": 250.0
+    }
+   ],
+   "comments": [
+    {
+     "postedBy": "Armen Avagyan",
+     "content": "I found SQL Injection\nplease find the vulnerability attachment"
+    }
+   ]
+  },
+  {
+   "description": "Crowdswarm is a multi-purpose platform providing a cyber security marketplace",
+   "details": "Crowdswarm.io welcomes security researchers to review our public-facing defenses with an objective, professional eye. \n\nThe CROWDSWARM platform connects the entire cyber-security eco-system of businesses, service and solution providers, vendors, the crowdsourcing talent pool of security experts, community advisors and educational institutes.\n\n### Program Rules\nPlease provide detailed reports with reproducible steps. \n\nIf the report is not detailed enough to reproduce the issue, the issue will not be eligible for a reward.\n\n### The following activities are NOT ALLOWED\n\n- Publicly disclosing vulnerabilities\n- Copying, changing or deleting data or systems\n- Causing damage, abuse, spamming\n- Placing malware or backdoors\n- Executing DoS or resource exhaustion attacks\n- Causing interruption or impediment of crowdswarm.io’s services and operation\n- Using social engineering techniques\n- Brute-forcing credentials of Crowdswarm customers or partners\n- Exposing sensitive or customer data\n- 3rd party-sites which Crowdswarm use\n\n### Non-qualifying Vulnerabilities:\n\n- Clickjacking on pages with no sensitive actions.\t\n- SPF/DMARC records\n- DNS vulnerabilities\n- Non-security-impacting UX issues\n- Invalid or missing SPF (Sender Policy Framework) records (Incomplete or missing SPF/DKIM)\n- Missing best practices in SSL/TLS configuration.\n\n### Scope\n- https://www.crowdswarm.io/\n- https://app.crowdswarm.io/\n\n### Legal Terms\n\n- Any activities conducted in a manner consistent with this policy will be considered authorized conduct and we will not initiate legal action against you.\n- Lawful, helpful to the overall security of the Internet, and conducted in good faith.\n- You are expected, as always, to comply with all applicable laws.",
+   "id": "GtyQa6QJV0OMuUv",
+   "tags": "web",
+   "title": "Crowdswarm - Bug Bounty Platform",
+   "companyName": "Crowdswarm",
+   "launchedDate": "2020-05-05T12:23:49",
+   "maxReward": 250.0,
+   "minReward": 100.0,
+   "minimumLevelId": "1",
+   "rewardPlans": [
+    {
+     "issueLevelId": "1",
+     "rewardAmount": 100.0
+    },
+    {
+     "issueLevelId": "2",
+     "rewardAmount": 175.0
+    },
+    {
+     "issueLevelId": "3",
+     "rewardAmount": 250.0
+    }
+   ],
+   "comments": [
+    {
+     "postedBy": "sehajpreet singh",
+     "content": "<script>alert(3)</script>"
+    },
+    {
+     "postedBy": "sehajpreet singh",
+     "content": "<svg/onload=confirm(3)>"
+    }
+   ]
+  }
+ ]
+}

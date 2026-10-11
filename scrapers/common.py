@@ -121,7 +121,7 @@ class Fetcher:
             total=4,
             backoff_factor=backoff,
             status_forcelist=(429, 500, 502, 503, 504),
-            allowed_methods=("GET",),
+            allowed_methods=("GET", "POST"),  # POST: read-only search endpoints only
             respect_retry_after_header=True,
         )
         self.session.mount("https://", HTTPAdapter(max_retries=retry))
@@ -143,22 +143,18 @@ class Fetcher:
             self.robots.parse([])
             log.debug("robots.txt returned %s: no restrictions assumed", resp.status_code)
 
-    def get_json(self, url: str):
-        """GET a JSON API endpoint (same politeness rules as `get`)."""
-        return json.loads(self.get(url, headers={"Accept": "application/json"}))
-
-    def get(self, url: str, headers: dict | None = None) -> str:
+    def _request(self, method: str, url: str, headers: dict | None = None, json_body=None) -> requests.Response:
         if not self.robots.can_fetch(USER_AGENT, url):
             raise RobotsDisallowed(f"robots.txt disallows: {url}")
         wait = self.delay - (time.monotonic() - self._last)
         if wait > 0:
             time.sleep(wait)
         started = time.monotonic()
-        resp = self.session.get(url, timeout=self.timeout, headers=headers)
+        resp = self.session.request(method, url, timeout=self.timeout, headers=headers, json=json_body)
         self._last = time.monotonic()
         log.debug(
-            "GET %s -> %s, %.1f KB, %.2fs",
-            url, resp.status_code, len(resp.content) / 1024, self._last - started,
+            "%s %s -> %s, %.1f KB, %.2fs",
+            method, url, resp.status_code, len(resp.content) / 1024, self._last - started,
         )
         if DUMP_DIR is not None:
             DUMP_DIR.mkdir(parents=True, exist_ok=True)
@@ -167,7 +163,21 @@ class Fetcher:
             (DUMP_DIR / f"{name}.{ext}").write_text(resp.text, encoding="utf-8")
             log.debug("Saved raw response to %s", DUMP_DIR / f"{name}.{ext}")
         resp.raise_for_status()
-        return resp.text
+        return resp
+
+    def get(self, url: str, headers: dict | None = None) -> str:
+        return self._request("GET", url, headers).text
+
+    def get_json(self, url: str):
+        """GET a JSON API endpoint (same politeness rules as `get`)."""
+        return json.loads(self.get(url, headers={"Accept": "application/json"}))
+
+    def post_json(self, url: str, payload: dict):
+        """POST a JSON body and return the parsed JSON answer.
+
+        Only for read-only "search" endpoints that use POST for their query body (this client
+        never writes anything on a platform). Same politeness rules as GET."""
+        return self._request("POST", url, {"Accept": "application/json"}, payload).json()
 
 
 # --------------------------------------------------------------------------- helpers
