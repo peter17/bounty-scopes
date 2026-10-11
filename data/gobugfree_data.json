@@ -622,15 +622,15 @@
         },
         {
           "target": "193.134.38.32/27",
-          "type": "other"
+          "type": "ip-address"
         },
         {
           "target": "194.209.51.176/29",
-          "type": "other"
+          "type": "ip-address"
         },
         {
           "target": "195.65.247.128/28",
-          "type": "other"
+          "type": "ip-address"
         },
         {
           "target": "partnerhub.swissbankers.ch",
