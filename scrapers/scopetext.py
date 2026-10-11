@@ -153,13 +153,19 @@ def entries_from_line(line: str, mode: str = "in") -> list[dict]:
     return entries
 
 
-def split_scope_lines(lines: list[str]) -> tuple[list[dict], list[dict]]:
+def split_scope_lines(
+    lines: list[str], initial_mode: str = "in"
+) -> tuple[list[dict], list[dict]]:
     """Turn the raw lines of a scope section into (in_scope, out_of_scope) entries.
+
+    `initial_mode` is "in" (default), "out", or "ignore": in "ignore" nothing is extracted until
+    an explicit "In scope" / "Not in scope" header line is met (for prose that may or may not
+    contain a scope list).
 
     `ASSET_BREAK` lines mark the start of a structured asset (title line first): the mode
     resets to "in" for it, or to "skip" if the title is purely informational.
     """
-    mode = "in"  # "in" | "out" | "skip"
+    mode = initial_mode  # "in" | "out" | "skip" | "ignore"
     explicit_in = False  # an "In scope"/"Targets" header was seen
     expect_title = False
     in_scope: list[dict] = []
@@ -178,6 +184,8 @@ def split_scope_lines(lines: list[str]) -> tuple[list[dict], list[dict]]:
                 mode = "skip"
                 continue
         if mode == "skip":
+            continue
+        if mode == "ignore" and not _HEADER_RE.match(line):
             continue
         item = line
         if m := _HEADER_RE.match(line):

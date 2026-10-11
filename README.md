@@ -34,7 +34,8 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 | Platform | File | Workflow | Status |
 |---|---|---|---|
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
-| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | implemented, to be validated on the first real run |
+| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
+| Bugbop | `data/bugbop_data.json` | `bugbop.yml` | implemented, to be validated on the first real run |
 
 ## Free-text scopes
 
@@ -66,6 +67,15 @@ Some platforms (GoBugFree, ...) have no structured scope: each customer writes i
 * if no in-scope target can be identified (e.g. targets listed after a `Not in scope` line with
   no `In scope` header), the program is published with an **empty scope** and a
   `WARNING ... needs manual review`: no data is better than wrong exclusions.
+
+### Bugbop
+
+Bugbop has no structured scope. The program's main URL (shown under its name) is the in-scope
+asset. The description is prose, so its URLs are **not** read as targets unless they sit under an
+explicit heading (`Scope`, `In scope`, `Targets`, `Out of scope`...) or after an explicit
+`In scope:` / `Not in scope:` line. Sections such as `Exclusions` list vulnerability classes
+(DoS, spam), not assets, and are ignored. `Restricted` programs get `public: false`, programs with
+`Bounty: Paused` get `disabled: true` (their amounts then come from the Rewards table).
 
 Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no
 currency field); anything else, or mixed currencies, gives `null`.

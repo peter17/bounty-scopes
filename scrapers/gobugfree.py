@@ -18,7 +18,7 @@ import re
 from urllib.parse import urljoin, urlparse
 
 import requests
-from bs4 import BeautifulSoup, Comment, NavigableString
+from bs4 import BeautifulSoup
 
 from .common import (
     Fetcher,
@@ -29,6 +29,7 @@ from .common import (
     progress,
     run_cli,
 )
+from .htmltext import mark_line_breaks, own_lines as _own_lines
 from .scopetext import ASSET_BREAK, entries_from_asset_titles, split_scope_lines
 
 log = logging.getLogger("scrapers.gobugfree")
@@ -42,7 +43,6 @@ NOT_PROGRAMS = {"trust"}
 
 _PROGRAM_RE = re.compile(r"^/programs/([^/?#]+)/?$")
 _HEADING_TAGS = ["h1", "h2", "h3"]
-_BR = "\u2028"  # marks <br>; plain "\n" would also match pretty-printing newlines in the source
 
 
 def parse_listing(html: str) -> dict[str, str]:
@@ -69,13 +69,6 @@ _SECTION_TITLE_RE = re.compile(
     r"^\s*(description|rules|scopes?|procedure|legal|bounty levels|leaderboard|hall of fame|footer)\s*$",
     re.I,
 )
-_INLINE = {
-    "a", "abbr", "b", "bdi", "bdo", "cite", "code", "em", "font", "i", "kbd", "label", "mark",
-    "q", "s", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr",
-}
-_SKIP = {"script", "style", "noscript", "svg", "template"}
-
-
 def _section(soup: BeautifulSoup, title: str, section_id: str | None = None):
     """All tags of a page section.
 
@@ -106,30 +99,9 @@ def _is_asset_title(el) -> bool:
     return el.name == "div" and "font-semibold" in (el.get("class") or []) and el.find_parent("li") is not None
 
 
-def _own_lines(el) -> list[str]:
-    """Text that belongs to `el` itself: its direct strings and inline children, not the text of
-    nested blocks (those are visited on their own). So "<li>Title <ul><li>x</li></ul></li>"
-    gives "Title" for the outer item and "x" for the inner one."""
-    if el.name in _INLINE or el.name in _SKIP:
-        return []
-    if el.name == "pre":  # line breaks are meaningful in preformatted text
-        return [" ".join(l.split()) for l in el.get_text("").split("\n") if l.strip()]
-    parts = []
-    for child in el.children:
-        if isinstance(child, Comment):
-            continue
-        if isinstance(child, NavigableString):
-            parts.append(str(child))
-        elif child.name in _INLINE:
-            parts.append(child.get_text(""))
-    text = "".join(parts)  # no added spaces: "<a>url</a>*" must stay "url*", like in a browser
-    return [" ".join(part.split()) for part in text.split(_BR) if part.strip()]
-
-
 def parse_program(html: str, slug: str, card_text: str = "") -> dict:
     soup = BeautifulSoup(html, "html.parser")
-    for br in soup.find_all("br"):
-        br.replace_with(_BR)
+    mark_line_breaks(soup)
 
     h1 = soup.find("h1")
     name = h1.get_text(" ", strip=True) if h1 else slug
