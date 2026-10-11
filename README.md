@@ -35,8 +35,9 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 |---|---|---|---|
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
 | GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
-| Bugbop | `data/bugbop_data.json` | `bugbop.yml` | implemented, to be validated on the first real run |
+| Bugbop | `data/bugbop_data.json` | `bugbop.yml` | validated on a real run |
 | WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | implemented from real API responses, to be validated on the first real run |
+| Bugzero | `data/bugzero_data.json` | `bugzero.yml` | implemented from real API responses, to be validated on the first real run |
 
 ## Free-text scopes
 
@@ -87,6 +88,16 @@ gives `public: false` (such programs are unreadable and have no scope), `status:
 `disabled: true`, `is_wh_managed` gives `managed`. Most programs pay in VND, so their bounty is
 `null` (see below). Target types other than `source_code` have not been seen yet: unknown ones are
 kept (slugified) and logged at INFO as `Unknown WhiteHub target type ...`.
+
+### Bugzero
+
+Bugzero is a SPA over public JSON endpoints (Cloud Functions): `/api/programs` lists the programs
+and `/api/organization/<handle>` gives a **structured** `programData.scope[]` (`type`,
+`identifier`, `submission`: "In Scope" / "Out of Scope"). The `policy` markdown is a generic
+template and is not read. The API gives a `minimum_bounties` but **no currency** and no maximum, so
+`min_bounty` is `null` until `MINIMUM_BOUNTY_CURRENCY` in `scrapers/bugzero.py` is set to the
+confirmed currency (e.g. `"USD"`). The API has no status field either, so `disabled` is always
+`false`. Only the `Domain` type has been seen; unknown types are kept and logged at INFO.
 
 Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no
 currency field); anything else, or mixed currencies, gives `null`.
