@@ -1,0 +1,879 @@
+[
+  {
+    "id": "abacus-research",
+    "name": "Abacus Research",
+    "public": false,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 5000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://bug-bounty1-1.shop.abanet.io/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://bug-bounty1-1.shop.abanet.io:443",
+          "type": "web-application"
+        },
+        {
+          "target": "https://apihub.abacus.ch/odata",
+          "type": "api"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope.",
+          "type": "other"
+        },
+        {
+          "target": "Everything that is not mentioned under https://apihub.abacus.ch/rest, for example ODBC Interfaces or AbaConnect, are out of Scope.",
+          "type": "other"
+        },
+        {
+          "target": "Further out of Scope, are all endpoints that are not starting with \"/api/*\", if not explicitly mentioned in the parts \"Odata Endpoints\" or \"Other Endpoints\"",
+          "type": "other"
+        },
+        {
+          "target": "Any connected 3rd Party System to the myAbacus Portal.",
+          "type": "other"
+        },
+        {
+          "target": "DeepBox",
+          "type": "other"
+        },
+        {
+          "target": "DeepMail",
+          "type": "other"
+        },
+        {
+          "target": "DeepV",
+          "type": "other"
+        },
+        {
+          "target": "DeepID",
+          "type": "other"
+        },
+        {
+          "target": "DeepSign",
+          "type": "other"
+        },
+        {
+          "target": "AbaSky",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bbh",
+    "name": "GObugfree",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 100,
+    "max_bounty": 3000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "gobugfree.com",
+          "type": "web-application"
+        },
+        {
+          "target": "backend.gobugfree.com",
+          "type": "web-application"
+        },
+        {
+          "target": "id.gobugfree.com",
+          "type": "web-application"
+        },
+        {
+          "target": "IAM: id.gobugfree.com (only misconfigurations are in scope)",
+          "type": "other"
+        },
+        {
+          "target": "cms.gobugfree.com",
+          "type": "web-application"
+        },
+        {
+          "target": "CMS: cms.gobugfree.com (only misconfigurations are in scope)",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "Third-party services and products such as Fidentity (ID verification) and Gmail etc.",
+          "type": "other"
+        },
+        {
+          "target": "id.gobugfree.com: Missing ratelimit on forms, known issues from Keycloak Issues and Security Advisories",
+          "type": "other"
+        },
+        {
+          "target": "cms.gobugfree.com: Known issues from Strapi Issues and Security Advisories",
+          "type": "other"
+        },
+        {
+          "target": "backend.gobugfree.com: Known issues from NestJS Issues and Security Advisories",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bcn-vdp",
+    "name": "Banque Cantonale Neuchâtel (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "Public facing applications and systems of BCN",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "bdo",
+    "name": "BDO Switzerland",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 100,
+    "max_bounty": 3000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://igm-portal.bdo.ch/FundwarePortal",
+          "type": "web-application"
+        },
+        {
+          "target": "https://pmt.bdo.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "https://protime.bdo.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "https://rm-digital.bdo.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "https://ababdo.bdo.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "https://ababdo-test.bdo.ch",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "cyberunity-vdp",
+    "name": "Cyberunity (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.cyberunity.io",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "demo-vdp",
+    "name": "GObugfree Customer Demo (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.gobugfree.com",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fidentity",
+    "name": "fidentity",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 100,
+    "max_bounty": 2500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://demo.fidentity.ch/docs",
+          "type": "web-application"
+        },
+        {
+          "target": "https://demo.fidentity.ch/api/v1/authenticate",
+          "type": "api"
+        },
+        {
+          "target": "Get Token with POST https://demo.fidentity.ch/api/v1/authenticate",
+          "type": "other"
+        },
+        {
+          "target": "https://demo.fidentity.ch/api/v1/fidentity",
+          "type": "api"
+        },
+        {
+          "target": "Create Process with POST https://demo.fidentity.ch/api/v1/fidentity with sample data:",
+          "type": "other"
+        },
+        {
+          "target": "https://demo.fidentity.ch/dashboard",
+          "type": "web-application"
+        },
+        {
+          "target": "https://simplesign.fidentity.ch",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "The following services and applications may be tested. All other targets and third party services not listed here are not in scope.",
+          "type": "other"
+        },
+        {
+          "target": "Especially MAIL, Wordpress and other 3rd party software not in scope.",
+          "type": "other"
+        },
+        {
+          "target": "Load or abuse testing of the process creation endpoint",
+          "type": "other"
+        },
+        {
+          "target": "Reports based on out-of-scope use will be closed as not applicable. Repeated misuse may lead to the API key being revoked.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fortcontrol-vdp",
+    "name": "fortControl (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.forthub.io",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gobugfree-vdp",
+    "name": "GObugfree (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.gobugfree.com",
+          "type": "wildcard"
+        },
+        {
+          "target": "*.gbf.dev",
+          "type": "wildcard"
+        },
+        {
+          "target": "*.gobugfree.io",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hypotheke-ch-vdp",
+    "name": "Hypotheke.ch (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.hypotheke.ch",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "llv-pub",
+    "name": "Liechtenstein National Administration (LLV) - Public",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 10000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://eid.li",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "https://www.vergabeportal.li",
+          "type": "web-application"
+        },
+        {
+          "target": "https://*.geo.llv.li",
+          "type": "web-application"
+        },
+        {
+          "target": "https://oereblex.llv.li",
+          "type": "web-application"
+        },
+        {
+          "target": "https://grundbuch.llv.li",
+          "type": "web-application"
+        },
+        {
+          "target": "https://etab.llv.li",
+          "type": "web-application"
+        },
+        {
+          "target": "All (sub) domains and services that are not explicitly listed within the scope, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "llv-vdp",
+    "name": "Liechtenstein National Administration (LLV) - VDP",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "eID.li",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "Please note that we use services from other companies and/or organizations for some parts of our systems and infrastructure.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "netplus",
+    "name": "netplus.ch SA",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 75,
+    "max_bounty": 6000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "my.dev.netplus.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "dev.netplus.tv",
+          "type": "web-application"
+        },
+        {
+          "target": "caius.dev.netplus.ch",
+          "type": "api"
+        },
+        {
+          "target": "my.sweez.ch",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All other domains and subdomains (as e.g. webmail). The parental control mechanism is out of scope, as not designed to be hacker proof.",
+          "type": "other"
+        },
+        {
+          "target": "https://viamotion.netplus.ch/vod/data_nfs/archived/hospitality_video/{ID}/_/box-dash/{ID}.mpd",
+          "type": "web-application"
+        },
+        {
+          "target": "https://viamotionhsi.netplus.ch/vod/data_nfs/archived/hospitality_video/{ID}/_/box-dash/{ID}.mpd",
+          "type": "web-application"
+        },
+        {
+          "target": "https://my.dev.netplus.ch/hsi/sms/*",
+          "type": "web-application"
+        }
+      ]
+    }
+  },
+  {
+    "id": "placeb-vdp",
+    "name": "placeB (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "www.placeb.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "api.placeb.ch",
+          "type": "api"
+        },
+        {
+          "target": "socket.prod.placeB.ch",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "raiffeisen-vdp",
+    "name": "Raiffeisen (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "raiffeisen.ch/vdp",
+          "type": "web-application"
+        },
+        {
+          "target": "Always consult our policy at raiffeisen.ch/vdp before examining any website.",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "raise-now-vdp-agArdpSTze8UiQ",
+    "name": "RaiseNow (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://manage.raisenow.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://tamaro.raisenow.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://api.raisenow.com",
+          "type": "api"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub-) domains and services that are not explicitly listed, are not in scope.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "rieter-vdp",
+    "name": "Rieter (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "rieter.com",
+          "type": "web-application"
+        },
+        {
+          "target": "accotex.com",
+          "type": "web-application"
+        },
+        {
+          "target": "bracker.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "graf-companies.com",
+          "type": "web-application"
+        },
+        {
+          "target": "novibra.com",
+          "type": "web-application"
+        },
+        {
+          "target": "ssm.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "suessen.com",
+          "type": "web-application"
+        },
+        {
+          "target": "temco.de",
+          "type": "web-application"
+        },
+        {
+          "target": "barmag.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "swissb",
+    "name": "Swiss Bankers",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 7500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.swissbankers.ch",
+          "type": "wildcard"
+        },
+        {
+          "target": "193.134.38.32/27",
+          "type": "other"
+        },
+        {
+          "target": "194.209.51.176/29",
+          "type": "other"
+        },
+        {
+          "target": "195.65.247.128/28",
+          "type": "other"
+        },
+        {
+          "target": "partnerhub.swissbankers.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "ch.swissbankers.mycard",
+          "type": "web-application"
+        },
+        {
+          "target": "cf.openpay010.opentech.com/swissbankers",
+          "type": "web-application"
+        },
+        {
+          "target": "openpay010.opentech.com/swissbankers",
+          "type": "web-application"
+        },
+        {
+          "target": "www.securepayment-swissbankers.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "secure.swissbankers.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "auth.secure.swissbankers.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "storeidentifier.openpay.swissbankers.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "sbpsadminportal.opentech.com",
+          "type": "web-application"
+        },
+        {
+          "target": "openpay011.opentech.com/swissbankers",
+          "type": "web-application"
+        },
+        {
+          "target": "api010.opentech.com/PNMWS",
+          "type": "api"
+        },
+        {
+          "target": "api012.opentech.com/PNMREST",
+          "type": "api"
+        },
+        {
+          "target": "api012.opentech.com/PNMWSING/public/REST/ack",
+          "type": "api"
+        },
+        {
+          "target": "acs.opentech.com/3ds/SBPS",
+          "type": "web-application"
+        },
+        {
+          "target": "pubmauthapi.acs.opentech.com/3ds/console/SBPS",
+          "type": "web-application"
+        },
+        {
+          "target": "api.acs.opentech.com/3ds/SBPS",
+          "type": "api"
+        },
+        {
+          "target": "emv.acs.opentech.com/3ds/SBPS/areq",
+          "type": "web-application"
+        },
+        {
+          "target": "api.emv.acs.opentech.com/3ds/SBPS",
+          "type": "api"
+        },
+        {
+          "target": "openpay010.opentech.com/SBPSChallengeManager",
+          "type": "web-application"
+        },
+        {
+          "target": "openpay010.opentech.com/SBPSAuthenticator",
+          "type": "web-application"
+        },
+        {
+          "target": "https://pro.mpe-to-otsc.opentech.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope as e.g. www.swissbankers.ch (159.100.246.236, 159.100.248.24) extranet.swissbankers.ch events.swissbankers.ch",
+          "type": "other"
+        },
+        {
+          "target": "The identity verification (Intrum/IDNow) in the app is not in scope, however it’s allowed to follow this process to setup an account in the app.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "synedra-vdp",
+    "name": "synedra (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.synedra.com",
+          "type": "wildcard"
+        },
+        {
+          "target": "*.synedra.cloud",
+          "type": "wildcard"
+        },
+        {
+          "target": "*.synedra.net",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "threema",
+    "name": "Threema",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 10000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/threema-ch/threema-desktop",
+          "type": "other"
+        },
+        {
+          "target": "apip.threema.ch",
+          "type": "api"
+        },
+        {
+          "target": "work.threema.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "broadcast.threema.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "gateway.threema.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "shop.threema.ch",
+          "type": "web-application"
+        },
+        {
+          "target": "billing.threema.ch",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "The following services and applications may be tested. All other targets and third party services not listed here are not in scope.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "thurgauer-kantonalbank-vdp",
+    "name": "Thurgauer Kantonalbank VDP",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "Public facing applications and systems of Thurgauer Kantonalbank",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "univote-vdp",
+    "name": "univote (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.univote.ch",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ylah-vdp",
+    "name": "ylah (Vulnerability Disclosure Program)",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.ylah.ch",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "All (sub) domains and services that are not explicitly listed, are not in scope",
+          "type": "other"
+        }
+      ]
+    }
+  }
+]
