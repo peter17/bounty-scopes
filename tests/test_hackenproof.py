@@ -180,13 +180,19 @@ def test_cli_normal_run_writes_file(fake_fetcher, tmp_data):
     assert [p["id"] for p in data] == ["near-protocol", "okx", "parity-prog"]
 
 
+def test_cli_only_implies_dry_run_and_skips_listing(fake_fetcher, tmp_data):
+    common.run_cli("hackenproof", hackenproof.crawl, ["--only", "okx"])
+    assert not (tmp_data / "hackenproof_data.json").exists()
+    assert fake_fetcher.requested == ["https://hackenproof.com/programs/okx"]
+
+
 def test_cli_dry_run_flag(fake_fetcher, tmp_data):
     common.run_cli("hackenproof", hackenproof.crawl, ["--dry-run"])
     assert not (tmp_data / "hackenproof_data.json").exists()
 
 
 def test_cli_error_exits_nonzero_with_hint(tmp_data, caplog):
-    def boom(limit=None):
+    def boom(limit=None, only=None):
         raise ValueError("kaboom")
 
     with pytest.raises(SystemExit) as exc, caplog.at_level(logging.ERROR, logger="scrapers"):

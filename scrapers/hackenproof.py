@@ -148,13 +148,13 @@ def parse_program(html: str, slug: str) -> dict:
     return program
 
 
-def crawl(limit: int | None = None) -> list[dict]:
+def crawl(limit: int | None = None, only: list[str] | None = None) -> list[dict]:
     fetcher = Fetcher(BASE_URL, delay=1.0)
 
     # Phase 1: program listing (paginated).
     program_slugs: list[str] = []
     company_slugs: list[str] = []
-    for page in range(1, MAX_PAGES + 1):
+    for page in range(1, 1 if only else MAX_PAGES + 1):
         url = LIST_URL if page == 1 else f"{LIST_URL}?page={page}"
         log.info("Listing page %d: %s", page, url)
         progs, comps = parse_listing(fetcher.get(url))
@@ -168,6 +168,10 @@ def crawl(limit: int | None = None) -> list[dict]:
         company_slugs += new_c
         if limit and len(program_slugs) >= limit:
             break
+
+    if only:
+        program_slugs = list(only)
+        company_slugs = []
 
     # Phase 2: company pages (they point to additional programs).
     if company_slugs and not (limit and len(program_slugs) >= limit):

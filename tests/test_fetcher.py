@@ -65,3 +65,11 @@ def test_robots_disallow_is_respected(server):
     f = common.Fetcher(server, delay=0, backoff=0)
     with pytest.raises(common.RobotsDisallowed):
         f.get(f"{server}/private")
+
+
+def test_dump_html_saves_raw_pages(server, tmp_path, monkeypatch):
+    monkeypatch.setattr(common, "DUMP_DIR", tmp_path)
+    f = common.Fetcher(server, delay=0, backoff=0)
+    f.get(f"{server}/ok")
+    files = list(tmp_path.glob("*.html"))
+    assert len(files) == 1 and files[0].read_text() == "hello"

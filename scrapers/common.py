@@ -13,10 +13,10 @@ Output format (identical to `yeswehack_data.json` from arkadiyt/bounty-targets-d
   }
 ]
 
-Every scraper exposes `crawl(limit=None) -> list[dict]` and ends with
+Every scraper exposes `crawl(limit=None, only=None) -> list[dict]` and ends with
 `run_cli("<platform>", crawl)`, which gives it the common command line:
 
-    python -m scrapers.<platform> [--verbose] [--limit N] [--dry-run]
+    python -m scrapers.<platform> [--verbose] [--limit N] [--only SLUG] [--dry-run] [--dump-html DIR]
 """
 from __future__ import annotations
 
@@ -35,6 +35,9 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 log = logging.getLogger("scrapers")
+
+# When set (--dump-html DIR), every fetched page is saved there, raw, for debugging.
+DUMP_DIR: Path | None = None
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
@@ -153,6 +156,11 @@ class Fetcher:
             "GET %s -> %s, %.1f KB, %.2fs",
             url, resp.status_code, len(resp.content) / 1024, self._last - started,
         )
+        if DUMP_DIR is not None:
+            DUMP_DIR.mkdir(parents=True, exist_ok=True)
+            name = re.sub(r"[^A-Za-z0-9._-]+", "_", re.sub(r"^https?://", "", url))[:150] or "index"
+            (DUMP_DIR / f"{name}.html").write_text(resp.text, encoding="utf-8")
+            log.debug("Saved raw HTML to %s", DUMP_DIR / f"{name}.html")
         resp.raise_for_status()
         return resp.text
 
@@ -175,6 +183,45 @@ def parse_money(text: str | None) -> int | None:
         return int(float(digits))
     except ValueError:
         return None
+
+
+# The reference format has no currency field, so amounts are only kept when they are in a
+# currency of comparable magnitude; anything else (VND, JPY, mixed...) becomes null.
+COMPARABLE_CURRENCIES = {"USD", "EUR", "CHF", "GBP"}
+_SYMBOLS = {"$": "USD", "\u20ac": "EUR", "\u00a3": "GBP"}
+_AMOUNT_RE = re.compile(
+    r"(?P<cur>[A-Z]{3}|[$\u20ac\u00a3])?\s*(?P<a>\d[\d',]*(?:\.\d+)?)"
+    r"(?:\s*[-\u2013\u2014]\s*(?P<cur2>[A-Z]{3}|[$\u20ac\u00a3])?\s*(?P<b>\d[\d',]*(?:\.\d+)?))?"
+)
+
+
+def parse_bounty_range(cells: list[str]) -> tuple[int | None, int | None]:
+    """(min, max) over cells such as "CHF 2000-3000" or "$100 - $1,000".
+
+    Returns (None, None) if a cell has no currency, currencies are mixed, or the
+    currency is not in COMPARABLE_CURRENCIES.
+    """
+    lows: list[int] = []
+    highs: list[int] = []
+    currencies: set[str] = set()
+    for text in cells:
+        m = _AMOUNT_RE.search(text or "")
+        if not m:
+            continue
+        cur = m.group("cur") or m.group("cur2")
+        cur = _SYMBOLS.get(cur, cur)
+        if not cur:
+            return None, None
+        currencies.add(cur)
+        low = parse_money(m.group("a"))
+        high = parse_money(m.group("b")) if m.group("b") else low
+        if low is None or high is None:
+            continue
+        lows.append(low)
+        highs.append(high)
+    if not lows or len(currencies) != 1 or not currencies <= COMPARABLE_CURRENCIES:
+        return None, None
+    return min(lows), max(highs)
 
 
 def make_program(
@@ -274,6 +321,14 @@ def parse_args(platform: str, argv: list[str] | None = None) -> argparse.Namespa
         help="only process the first N programs (quick test). Implies --dry-run.",
     )
     parser.add_argument(
+        "--only", action="append", metavar="SLUG",
+        help="only process this program (repeatable). Implies --dry-run.",
+    )
+    parser.add_argument(
+        "--dump-html", metavar="DIR",
+        help="save the raw HTML of every fetched page in DIR (to debug or send as a fixture)",
+    )
+    parser.add_argument(
         "--dry-run", action="store_true",
         help="run everything but do not write anything to data/",
     )
@@ -283,14 +338,18 @@ def parse_args(platform: str, argv: list[str] | None = None) -> argparse.Namespa
 def run_cli(platform: str, crawl, argv: list[str] | None = None) -> None:
     args = parse_args(platform, argv)
     setup_logging(args.verbose)
-    dry_run = args.dry_run or args.limit is not None  # never overwrite data with a partial run
+    # Never overwrite data with a partial run.
+    dry_run = args.dry_run or args.limit is not None or bool(args.only)
+    global DUMP_DIR
+    DUMP_DIR = Path(args.dump_html) if args.dump_html else None
     started = time.monotonic()
 
-    log.info("[%s] starting%s%s", platform,
+    log.info("[%s] starting%s%s%s", platform,
              f" (limit={args.limit})" if args.limit else "",
+             f" (only={','.join(args.only)})" if args.only else "",
              " (dry run: nothing will be written)" if dry_run else "")
     try:
-        programs = crawl(limit=args.limit)
+        programs = crawl(limit=args.limit, only=args.only)
         if dry_run:
             outcome = "dry run, nothing written"
         else:

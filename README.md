@@ -33,7 +33,42 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 
 | Platform | File | Workflow | Status |
 |---|---|---|---|
-| HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | implemented, to be validated on the first real run |
+| HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
+| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | implemented, to be validated on the first real run |
+
+## Free-text scopes
+
+Some platforms (GoBugFree, ...) have no structured scope: each customer writes its own list.
+`scrapers/scopetext.py` extracts targets heuristically:
+
+* each URL / domain / wildcard / IP found becomes one entry, with a type guessed from the target;
+* `In scope` / `Targets` / `Not in scope` lines (colon optional) switch the mode;
+* a line without any target is kept (as `other`) only **out of scope**, where it is an exclusion
+  rule; in scope it is a title or a description and is dropped;
+* lines longer than 40 words are prose and ignored (their URLs are rarely targets);
+* in scope, a target with a remark (`id.example.com (only misconfigurations are in scope)`)
+  yields the clean target **plus** the full line as `other`;
+* out of scope, a target with a remark is a *partial* exclusion (`id.example.com: known issues
+  from X`), so only the full line is kept, never a clean out-of-scope domain;
+* GoBugFree pages have two zones inside `<section aria-labelledby="scopes">`: a free-text zone
+  and a list of **structured assets** (`<li><div class="font-semibold">title</div>description`).
+  - each asset restarts in "in scope" mode, so an exclusion paragraph above the list cannot leak
+    onto the assets below it; an asset whose title is `Not in Scope` makes only *its own* lines
+    out of scope; purely informational assets (`Source Code`, `Credentials`, `Documentation`...)
+    are skipped;
+  - "... out of scope: https://x/*" inside a line puts that URL out of scope without changing the
+    mode; a lead-in ending with "out of scope:" switches to out of scope;
+  - `host: API` gives type `api`; `<pre>` blocks keep their line breaks;
+  - when no target is found, the short asset titles become `other` entries (VDP whose scope is a
+    statement);
+* exception: if no target at all was found in scope, short statements under an explicit
+  `In scope` header are kept as `other` (a VDP whose scope is "public facing systems of X");
+* if no in-scope target can be identified (e.g. targets listed after a `Not in scope` line with
+  no `In scope` header), the program is published with an **empty scope** and a
+  `WARNING ... needs manual review`: no data is better than wrong exclusions.
+
+Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no
+currency field); anything else, or mixed currencies, gives `null`.
 
 ## Running a scraper and debugging
 
@@ -41,10 +76,12 @@ Types used: `web-application`, `api`, `mobile-application-ios`,
 pip install -r requirements-dev.txt
 pytest                                       # offline tests
 
-python -m scrapers.hackenproof               # real run, writes data/hackenproof_data.json
-python -m scrapers.hackenproof --verbose     # + every HTTP request (status, size, time), scope counts, retries
-python -m scrapers.hackenproof --limit 5     # quick test on 5 programs (implies --dry-run)
-python -m scrapers.hackenproof --dry-run     # full run, writes nothing
+python -m scrapers.<platform>               # real run, writes data/<platform>_data.json
+python -m scrapers.<platform> --verbose     # + every HTTP request (status, size, time), scope counts, retries
+python -m scrapers.<platform> --limit 5     # quick test on 5 programs (implies --dry-run)
+python -m scrapers.<platform> --only SLUG    # a single program (repeatable). Implies --dry-run.
+python -m scrapers.<platform> --dry-run     # full run, writes nothing
+python -m scrapers.<platform> --only SLUG --dump-html /tmp/dump   # also save the raw HTML of each page
 ```
 
 Progress is always printed to stderr, one line per page, before the request is made, so a
