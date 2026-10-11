@@ -1,0 +1,312 @@
+[
+  {
+    "id": "bhasha",
+    "name": "Bhasha",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "lk.bhasha.helakuru",
+          "type": "android-app"
+        },
+        {
+          "target": "1012390370",
+          "type": "ios-app"
+        },
+        {
+          "target": "lk.bhasha.helakuru.lite",
+          "type": "android-app"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "bz",
+    "name": "Bug Zero",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "bugzero.io",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "blog.bugzero.io",
+          "type": "web-application"
+        }
+      ]
+    }
+  },
+  {
+    "id": "citadel_edu",
+    "name": "CITADEL EDU",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "citadel.edu.lk",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "drawify",
+    "name": "Drawify",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "drawify.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "helakuru",
+    "name": "Helakuru",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "lk.bhasha.helakuru",
+          "type": "android-app"
+        },
+        {
+          "target": "1012390370",
+          "type": "ios-app"
+        },
+        {
+          "target": "lk.bhasha.helakuru.lite",
+          "type": "android-app"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "janashakthi_insuranc",
+    "name": "Janashakthi Insurance PLC",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://testflight.apple.com/join/5l7Tufsm",
+          "type": "source-code"
+        },
+        {
+          "target": "https://drive.google.com/file/d/1KW3OmOFDTyMk9tz01TxWaYUwzGstOb6B/view?usp=share_link",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "payhere",
+    "name": "PayHere",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "www.payhere.lk",
+          "type": "web-application"
+        },
+        {
+          "target": "https://github.com/PayHereLK/",
+          "type": "source-code"
+        },
+        {
+          "target": "https://payhere.lk/lib/payhere.js",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/PayHereLK/payhere-woocommerce",
+          "type": "source-code"
+        },
+        {
+          "target": "https://www.payhere.lk/merchant",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "sandbox.payhere.lk",
+          "type": "web-application"
+        }
+      ]
+    }
+  },
+  {
+    "id": "routesonar",
+    "name": "Routesonar",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "www.routesonar.com",
+          "type": "web-application"
+        },
+        {
+          "target": "com.zeroonetech.routesonarrider",
+          "type": "android-app"
+        },
+        {
+          "target": "www.beta.routesonar.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "scorelab",
+    "name": "SCoRe Lab",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/scorelab/LabelLab",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/fact-Bounty",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/Bassa",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/Stackle",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/DroneSym",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/parks",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/TrackPal",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/AnimalRescue",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/leopardslab/CrawlerX",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/scorelab/com-dictionary",
+          "type": "source-code"
+        },
+        {
+          "target": "https://github.com/leopardslab/nodecloud",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "sri_lanka_cert",
+    "name": "Sri Lanka CERT",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "www.cert.gov.lk",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "webtelescope_",
+    "name": "Webtelescope",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "urlabuse.webtelescope.io",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "worklenz",
+    "name": "Worklenz",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "worklenz.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  }
+]
