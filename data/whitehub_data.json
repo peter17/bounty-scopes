@@ -1,0 +1,332 @@
+[
+  {
+    "id": "cystack",
+    "name": "CyStack",
+    "public": true,
+    "disabled": false,
+    "managed": true,
+    "min_bounty": 0,
+    "max_bounty": 500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.cystack.net",
+          "type": "web-application"
+        },
+        {
+          "target": "*.cystack.io",
+          "type": "web-application"
+        },
+        {
+          "target": "*.cystack.org",
+          "type": "web-application"
+        },
+        {
+          "target": "*.whitehub.net",
+          "type": "web-application"
+        },
+        {
+          "target": "Desktop Software",
+          "type": "desktop"
+        },
+        {
+          "target": "Android App",
+          "type": "mobile-application-android"
+        },
+        {
+          "target": "iOS App",
+          "type": "mobile-application-ios"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "farm",
+    "name": "Farm",
+    "public": true,
+    "disabled": false,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/farm-fe/farm",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "fiin",
+    "name": "FIIN",
+    "public": true,
+    "disabled": true,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "Android App",
+          "type": "mobile-application-android"
+        },
+        {
+          "target": "iOS App",
+          "type": "mobile-application-ios"
+        },
+        {
+          "target": "https://api.fiin.vn/",
+          "type": "api"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "finhay-old",
+    "name": "Finhay",
+    "public": true,
+    "disabled": true,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "finhay.com.vn",
+          "type": "web-application"
+        },
+        {
+          "target": "Finhay Android App",
+          "type": "mobile-application-android"
+        },
+        {
+          "target": "Finhay iOS App",
+          "type": "mobile-application-ios"
+        },
+        {
+          "target": "app.finhay.com.vn",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "gpqb",
+    "name": "GPQB",
+    "public": false,
+    "disabled": true,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "hackme",
+    "name": "Hackme",
+    "public": true,
+    "disabled": false,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "Testing WhiteHub",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "hodo",
+    "name": "HODO",
+    "public": false,
+    "disabled": true,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "locker",
+    "name": "Locker Password Manager",
+    "public": true,
+    "disabled": false,
+    "managed": true,
+    "min_bounty": 0,
+    "max_bounty": 500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.locker.io",
+          "type": "web-application"
+        },
+        {
+          "target": "Android App",
+          "type": "mobile-application-android"
+        },
+        {
+          "target": "IOS app",
+          "type": "mobile-application-ios"
+        },
+        {
+          "target": "Extension",
+          "type": "desktop"
+        },
+        {
+          "target": "Source code",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "luxstay",
+    "name": "Luxstay",
+    "public": false,
+    "disabled": true,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "nami",
+    "name": "Nami Exchange",
+    "public": true,
+    "disabled": true,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "nami.exchange",
+          "type": "web-application"
+        },
+        {
+          "target": "data.nami.exchange",
+          "type": "web-application"
+        },
+        {
+          "target": "namiinsurance.io",
+          "type": "web-application"
+        },
+        {
+          "target": "api.namiinsurance.io",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "nukeviet",
+    "name": "NukeViet",
+    "public": true,
+    "disabled": false,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/nukeviet/nukeviet/",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "one-mount",
+    "name": "One Mount Group",
+    "public": true,
+    "disabled": false,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "orpc",
+    "name": "oRPC",
+    "public": true,
+    "disabled": true,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/unnoq/orpc",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "vdp",
+    "name": "Vulnerability Disclosure",
+    "public": true,
+    "disabled": false,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "vndc",
+    "name": "VNDC",
+    "public": false,
+    "disabled": true,
+    "managed": true,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "zblibrary",
+    "name": "Android-ZBLibrary",
+    "public": true,
+    "disabled": false,
+    "managed": false,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/TommyLemon/Android-ZBLibrary",
+          "type": "source-code"
+        }
+      ],
+      "out_of_scope": []
+    }
+  }
+]
