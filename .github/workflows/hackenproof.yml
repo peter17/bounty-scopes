@@ -2,9 +2,9 @@ name: update-hackenproof
 
 on:
   schedule:
-    # Twice a day (UTC). Use a different minute for each platform so that the
+    # Once a day (UTC). Use a different minute for each platform so that the
     # workflows do not all push at exactly the same time.
-    - cron: "17 4,16 * * *"
+    - cron: "17 4 * * *"
   workflow_dispatch:
     inputs:
       debug:

@@ -54,13 +54,17 @@ def test_comments_are_never_read_or_stored():
         assert payload not in out
 
 
-def test_bounty_is_null_until_currency_is_confirmed(monkeypatch):
-    assert crowdswarm.REWARD_CURRENCY is None
+def test_bounty_is_in_usd():
+    assert crowdswarm.REWARD_CURRENCY == "USD"
+    for item in (SADAQAH, CROWDSWARM):
+        p = crowdswarm.build_program(item)
+        assert (p["min_bounty"], p["max_bounty"]) == (100, 250)
+
+
+def test_bounty_is_null_if_currency_is_unknown(monkeypatch):
+    monkeypatch.setattr(crowdswarm, "REWARD_CURRENCY", None)
     p = crowdswarm.build_program(SADAQAH)
     assert (p["min_bounty"], p["max_bounty"]) == (None, None)
-    monkeypatch.setattr(crowdswarm, "REWARD_CURRENCY", "USD")
-    p = crowdswarm.build_program(SADAQAH)
-    assert (p["min_bounty"], p["max_bounty"]) == (100, 250)
 
 
 def test_explicit_out_of_scope_heading_and_in_scope_line_under_rules():

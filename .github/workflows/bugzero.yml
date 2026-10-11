@@ -2,9 +2,9 @@ name: update-bugzero
 
 on:
   schedule:
-    # Twice a day (UTC). Use a different minute for each platform so that the
+    # Once a day (UTC). Use a different minute for each platform so that the
     # workflows do not all push at exactly the same time.
-    - cron: "13 8,20 * * *"
+    - cron: "13 8 * * *"
   workflow_dispatch:
     inputs:
       debug:

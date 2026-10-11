@@ -3,7 +3,7 @@
 Scopes of **public** bug bounty programs from secondary platforms, in the format of
 [arkadiyt/bounty-targets-data](https://github.com/arkadiyt/bounty-targets-data)
 (schema of `yeswehack_data.json`). One JSON file per platform in `data/`, updated by a
-dedicated GitHub Actions workflow, **twice a day**.
+dedicated GitHub Actions workflow, **once a day**.
 
 ## Format
 
@@ -40,6 +40,23 @@ Types used: `web-application`, `wildcard`, `api`, `mobile-application`, `mobile-
 | WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | validated on a real run |
 | Bugzero | `data/bugzero_data.json` | `bugzero.yml` | validated on a real run |
 | CrowdSwarm | `data/crowdswarm_data.json` | `crowdswarm.yml` | implemented from real API responses, to be validated on the first real run |
+
+## Platforms not covered
+
+Checked in October 2026. A platform is skipped when it cannot be read automatically without
+authentication, or when it asks not to be read automatically. Nothing here circumvents either.
+
+| Platform | Why it is not covered |
+|---|---|
+| Yogosha, hackr.fi, SecureBug, hckrt, Zerocopter | `robots.txt` disallows automated access |
+| RedStorm | blocks automated requests (bot detection) |
+| bug-bounty.com, Comolho, Safehats, Hackaflag | the program pages are behind a login |
+| Inspectiv, BugBounter, SignalFisher, bughunt.com.br | no program data without authentication |
+| Hacktify | static page last edited in 2024: 5 programs, no structured scope (abandoned) |
+| BugV | single-page app with no public program data found (abandoned) |
+
+If a platform changes its policy (or publishes an official API), it can be added with a new
+scraper: see "Adding a platform".
 
 ## Free-text scopes
 
@@ -109,8 +126,8 @@ already carries its full markdown `details`, so no per-program request is made. 
 from the markdown headings: `### Scope`, `### Scope Platform`, `### Scope IP Address`... are in
 scope (short bullets without a URL are kept as `other`), `Out of scope` headings are out of scope,
 and everything else (rules, `NOT ALLOWED` activities, `Non-qualifying Vulnerabilities`, legal
-terms) is ignored. The API gives `minReward` / `maxReward` but no currency, so the bounty is `null`
-until `REWARD_CURRENCY` in `scrapers/crowdswarm.py` is set. The `comments` field is **never read**:
+terms) is ignored. The API gives `minReward` / `maxReward` but no currency: it is USD (confirmed on
+the platform, `REWARD_CURRENCY` in `scrapers/crowdswarm.py`). The `comments` field is **never read**:
 it is written by anonymous users and contains raw XSS payloads.
 
 Bounty amounts are kept only when the currency is USD, EUR, CHF or GBP (the format has no

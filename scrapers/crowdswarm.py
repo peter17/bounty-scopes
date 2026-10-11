@@ -19,7 +19,7 @@ Mapping:
               "NOT ALLOWED" activities, "Non-qualifying Vulnerabilities", Legal Terms) is rules,
               not assets, and is ignored.
   bounty    = minReward / maxReward, ONLY if REWARD_CURRENCY is a known comparable currency
-              (the API gives no currency: unconfirmed, so null until it is set).
+              (the API gives no currency; USD was confirmed on the platform).
   public    = True   (public-program endpoint)
   disabled  = False  (the API has no status field)
   managed   = None
@@ -53,9 +53,8 @@ LIST_PATH = "/api/v1.0/public-program/get-all"
 PAGE_SIZE = 10
 MAX_PAGES = 100  # safety net against endless pagination
 
-# Currency of minReward / maxReward. UNCONFIRMED: the API does not say. Keep None until checked
-# on the platform, then set it (e.g. "USD").
-REWARD_CURRENCY: str | None = None
+# Currency of minReward / maxReward: the API does not say, USD was confirmed on the platform.
+REWARD_CURRENCY: str | None = "USD"
 
 _IN_HEADING_RE = re.compile(r"^\s*(in[\s-]*scope|scope)\b", re.I)
 _OUT_HEADING_RE = re.compile(r"^\s*(out[\s-]*of[\s-]*scope|not\s+in[\s-]*scope)\b", re.I)
