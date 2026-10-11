@@ -1,0 +1,62 @@
+[
+  {
+    "id": "GtyQa6QJV0OMuUv",
+    "name": "Crowdswarm - Bug Bounty Platform",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.crowdswarm.io/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://app.crowdswarm.io/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "RaHeZNP2i0GdAgn",
+    "name": "Sadaqah - Ummah Crowdfunding",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://sadaqah.io",
+          "type": "web-application"
+        },
+        {
+          "target": "https://community.sadaqah.io",
+          "type": "web-application"
+        },
+        {
+          "target": "https://analytics.sadaqah.io",
+          "type": "web-application"
+        },
+        {
+          "target": "https://sadaqah.io/blog/",
+          "type": "web-application"
+        },
+        {
+          "target": "3.23.218.108",
+          "type": "ip-address"
+        },
+        {
+          "target": "Any S3 Buckets Detecting Sensitive Classified Information",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": []
+    }
+  }
+]
