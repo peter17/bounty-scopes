@@ -1,0 +1,146 @@
+[
+  {
+    "id": "419648da-8643-4f02-8c86-d63bc500867c",
+    "name": "Gleam.io's Bugbop program",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 1200,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://gleam.io",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "555f7538-f1de-486c-b0d3-8c9b1ba79eac",
+    "name": "Bugbop Test Program",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://bugbop.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "69b2fd6f-1308-41e7-994e-274263bb373d",
+    "name": "Unify Bug Bounty",
+    "public": false,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 250,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://app.unifygtm.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "72c99729-4525-4fff-8c1d-3b6690df77d6",
+    "name": "Acquire Bug Bounty",
+    "public": true,
+    "disabled": true,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://acquireglobal.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "7cd5f471-e6ea-4700-ba1f-ab591b9c2595",
+    "name": "Leda Bug Bounty Program",
+    "public": false,
+    "disabled": true,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://getleda.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "867e047f-c918-4f35-9d6c-09cce96d053a",
+    "name": "Bugbop",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://bugbop.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "b5f2f20e-fe4d-466b-a474-6db65b4d2bb3",
+    "name": "Fleet vulnerability disclosure program",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/fleetdm/fleet",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "d5bd18a3-fd0e-45d6-8eb8-99ebb3c6222d",
+    "name": "SyncEzy Bug Bounty Program",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 100,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://SyncEzy.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  }
+]
