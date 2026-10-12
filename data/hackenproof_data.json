@@ -188,27 +188,27 @@
     "targets": {
       "in_scope": [
         {
-          "target": "https://github.com/1inch/limit-order-protocol",
+          "target": "https://github.com/1inch/limit-order-protocol/tree/4.3.4",
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/fusion-protocol",
+          "target": "https://github.com/1inch/fusion-protocol/tree/3.1.1",
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/token-plugins",
+          "target": "https://github.com/1inch/token-plugins/tree/2.0.0",
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/farming",
+          "target": "https://github.com/1inch/farming/tree/4.0.0",
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/delegating",
+          "target": "https://github.com/1inch/delegating/tree/2.0.0",
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/cross-chain-swap",
+          "target": "https://github.com/1inch/solana-crosschain-protocol/tree/1.1.0",
           "type": "smart-contract"
         },
         {
@@ -216,7 +216,7 @@
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/solana-fusion",
+          "target": "https://github.com/1inch/solana-fusion/tree/1.0.0-release",
           "type": "smart-contract"
         }
       ],
