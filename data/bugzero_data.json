@@ -5,7 +5,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -31,7 +31,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -54,7 +54,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -72,7 +72,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -90,7 +90,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -116,7 +116,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -138,7 +138,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 10,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -177,7 +177,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -279,7 +279,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 10,
     "max_bounty": null,
     "targets": {
       "in_scope": [
@@ -297,7 +297,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
+    "min_bounty": 5,
     "max_bounty": null,
     "targets": {
       "in_scope": [
