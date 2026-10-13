@@ -5032,13 +5032,14 @@
         {
           "target": "https://api.flipster.io",
           "type": "api"
-        },
+        }
+      ],
+      "out_of_scope": [
         {
           "target": "https://trading-api.flipster.io",
           "type": "web-application"
         }
-      ],
-      "out_of_scope": []
+      ]
     }
   },
   {
