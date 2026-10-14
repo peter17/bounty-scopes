@@ -1999,7 +1999,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 50,
-    "max_bounty": 8000,
+    "max_bounty": 50000,
     "targets": {
       "in_scope": [
         {
@@ -2021,6 +2021,10 @@
         {
           "target": "fapi.bitunix.com",
           "type": "api"
+        },
+        {
+          "target": "Threat Intelligence",
+          "type": "other"
         }
       ],
       "out_of_scope": [
@@ -9586,8 +9590,8 @@
           "type": "smart-contract"
         },
         {
-          "target": "github.com/MystenLabs/sui/tree/bella-ciao",
-          "type": "smart-contract"
+          "target": "github.com/MystenLabs/hashi",
+          "type": "protocol"
         }
       ],
       "out_of_scope": [
@@ -11586,10 +11590,6 @@
           "type": "smart-contract"
         },
         {
-          "target": "https://explorer.hiro.so/txid/SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-4-market?chain=mainnet",
-          "type": "smart-contract"
-        },
-        {
           "target": "https://explorer.hiro.so/txid/0x110c04dab690e12be239ebd41df6b8a4e71a55782c2c592cbb3350c31e1bdb19?chain=mainnet",
           "type": "smart-contract"
         },
@@ -11606,7 +11606,7 @@
           "type": "smart-contract"
         },
         {
-          "target": "https://explorer.hiro.so/txid/SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-6-market?chain=mainnet",
+          "target": "https://explorer.hiro.so/txid/SP1A27KFY4XERQCCRCARCYD1CC5N7M6688BSYADJ7.v0-8-market?chain=mainnet&tab=availableFunctions",
           "type": "smart-contract"
         }
       ],
