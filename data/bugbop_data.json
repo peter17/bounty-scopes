@@ -54,6 +54,24 @@
     }
   },
   {
+    "id": "6cd18c88-7066-431b-a595-0d9ec9c94bf4",
+    "name": "NowSecure Bug Bounty",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 5000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.nowsecure.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
     "id": "72c99729-4525-4fff-8c1d-3b6690df77d6",
     "name": "Acquire Bug Bounty",
     "public": true,
