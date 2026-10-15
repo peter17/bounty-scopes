@@ -2499,7 +2499,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 10,
-    "max_bounty": 300000,
+    "max_bounty": 1000000,
     "targets": {
       "in_scope": [
         {
@@ -5597,7 +5597,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 50,
-    "max_bounty": 1000,
+    "max_bounty": 2000,
     "targets": {
       "in_scope": [
         {
@@ -11740,6 +11740,28 @@
           "type": "web-application"
         }
       ]
+    }
+  },
+  {
+    "id": "zmo-exchange",
+    "name": "ZMO Exchange",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 2000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.zmo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.zmo.com",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
     }
   },
   {
