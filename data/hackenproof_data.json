@@ -2503,7 +2503,7 @@
     "targets": {
       "in_scope": [
         {
-          "target": "https://github.com/hackenproof-public/cetus-clmm",
+          "target": "https://github.com/hackenproof-public/cetus-contract-bounty",
           "type": "smart-contract"
         },
         {
@@ -5053,7 +5053,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 0,
-    "max_bounty": 25000,
+    "max_bounty": 10000,
     "targets": {
       "in_scope": [
         {
