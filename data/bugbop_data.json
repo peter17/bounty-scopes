@@ -1,5 +1,84 @@
 [
   {
+    "id": "1a81a23b-23b2-4112-b37e-741ba53d5424",
+    "name": "Belvo Technologies Inc.",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 1200,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://belvo.com/",
+          "type": "web-application"
+        },
+        {
+          "target": "dashboard.belvo.co",
+          "type": "web-application"
+        },
+        {
+          "target": "api.belvo.com",
+          "type": "api"
+        },
+        {
+          "target": "belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "sandbox.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "identity.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "portal.sandbox.directdebit.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "api.sandbox.directdebit.belvo.com",
+          "type": "api"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "https://developers.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://status.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://support.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://institutions.belvo.com",
+          "type": "web-application"
+        },
+        {
+          "target": "Additional exclusions:",
+          "type": "other"
+        },
+        {
+          "target": "Any services hosted by third parties, unless they directly impact the security of our primary assets.",
+          "type": "other"
+        },
+        {
+          "target": "Physical offices and infrastructure.",
+          "type": "other"
+        },
+        {
+          "target": "Employee social media accounts.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
     "id": "419648da-8643-4f02-8c86-d63bc500867c",
     "name": "Gleam.io's Bugbop program",
     "public": true,
@@ -60,7 +139,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 0,
-    "max_bounty": 5000,
+    "max_bounty": 1000,
     "targets": {
       "in_scope": [
         {
