@@ -526,7 +526,7 @@
     }
   },
   {
-    "id": "raise-now-vdp-agArdpSTze8UiQ",
+    "id": "raise-now-vdp-agardpstze8uiq",
     "name": "RaiseNow (Vulnerability Disclosure Program)",
     "public": true,
     "disabled": false,
@@ -536,16 +536,8 @@
     "targets": {
       "in_scope": [
         {
-          "target": "https://manage.raisenow.com",
-          "type": "web-application"
-        },
-        {
           "target": "https://tamaro.raisenow.com",
           "type": "web-application"
-        },
-        {
-          "target": "https://api.raisenow.com",
-          "type": "api"
         }
       ],
       "out_of_scope": [
