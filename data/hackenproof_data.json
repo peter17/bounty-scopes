@@ -2353,7 +2353,7 @@
     "id": "bullbit-qa-testing",
     "name": "Bullbit QA Testing",
     "public": true,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
     "min_bounty": 10,
     "max_bounty": 50,
