@@ -136,10 +136,10 @@
     "id": "6cd18c88-7066-431b-a595-0d9ec9c94bf4",
     "name": "NowSecure Bug Bounty",
     "public": true,
-    "disabled": false,
+    "disabled": true,
     "managed": null,
-    "min_bounty": 0,
-    "max_bounty": 1000,
+    "min_bounty": null,
+    "max_bounty": null,
     "targets": {
       "in_scope": [
         {
