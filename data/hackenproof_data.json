@@ -8463,6 +8463,87 @@
     }
   },
   {
+    "id": "redstone-smart-contracts",
+    "name": "RedStone Smart Contracts",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 250000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector/contracts",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-adapters/contracts",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/rust-sdk/tree/main/crates/redstone",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/stellar-connector",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/sui-connector",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/solana-connector",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/radix-connector",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://app.redstone.finance/app/feeds",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/on-chain-relayer",
+          "type": "smart-contract"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "redstone-web",
+    "name": "RedStone Web",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 200,
+    "max_bounty": 10000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://app.redstone.finance",
+          "type": "web-application"
+        },
+        {
+          "target": "https://www.redstone.finance/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://docs.redstone.finance",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "https://blog.hackenproof.com",
+          "type": "mobile-application-ios"
+        }
+      ]
+    }
+  },
+  {
     "id": "risc-zero-blockchain-verifiers",
     "name": "RISC Zero Blockchain Verifiers",
     "public": true,
