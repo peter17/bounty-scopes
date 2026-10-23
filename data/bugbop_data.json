@@ -40,6 +40,22 @@
         {
           "target": "api.sandbox.directdebit.belvo.com",
           "type": "api"
+        },
+        {
+          "target": "https://crosshair-mcp.belvo.com/mcp",
+          "type": "web-application"
+        },
+        {
+          "target": "MCP / https://crosshair-mcp.belvo.com/mcp: Public-api MCP server",
+          "type": "other"
+        },
+        {
+          "target": "https://panorama-mcp.belvo.com/mcp",
+          "type": "web-application"
+        },
+        {
+          "target": "MCP / https://panorama-mcp.belvo.com/mcp: Public Belvo MCP server",
+          "type": "other"
         }
       ],
       "out_of_scope": [
