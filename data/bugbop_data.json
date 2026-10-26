@@ -97,7 +97,7 @@
   {
     "id": "419648da-8643-4f02-8c86-d63bc500867c",
     "name": "Gleam.io's Bugbop program",
-    "public": true,
+    "public": false,
     "disabled": false,
     "managed": null,
     "min_bounty": 0,
@@ -124,24 +124,6 @@
       "in_scope": [
         {
           "target": "https://bugbop.com",
-          "type": "web-application"
-        }
-      ],
-      "out_of_scope": []
-    }
-  },
-  {
-    "id": "69b2fd6f-1308-41e7-994e-274263bb373d",
-    "name": "Unify Bug Bounty",
-    "public": false,
-    "disabled": false,
-    "managed": null,
-    "min_bounty": 0,
-    "max_bounty": 250,
-    "targets": {
-      "in_scope": [
-        {
-          "target": "https://app.unifygtm.com/",
           "type": "web-application"
         }
       ],
