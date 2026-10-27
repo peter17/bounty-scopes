@@ -1,15 +1,69 @@
 [
   {
     "id": "0g-labs-smart-contracts",
-    "name": "0g-labs-smart-contracts",
+    "name": "0G Labs Smart Contracts",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 500,
+    "max_bounty": 32000,
     "targets": {
-      "in_scope": [],
-      "out_of_scope": []
+      "in_scope": [
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-da-contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-da-node",
+          "type": "infrastructure"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-chain",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-da-encoder",
+          "type": "infrastructure"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-ec-gpu",
+          "type": "infrastructure"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-da-client",
+          "type": "infrastructure"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/tree/main/contracts/cashier",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/tree/main/contracts/token",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/blob/main/contracts/reward/OnePoolReward.sol",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/blob/main/contracts/reward/ChunkDecayReward.sol",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/tree/main/contracts/uploadMarket",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/0glabs/0g-storage-contracts/blob/main/contracts/utils/Exponent.sol",
+          "type": "smart-contract"
+        }
+      ]
     }
   },
   {
@@ -388,14 +442,19 @@
   },
   {
     "id": "alfred-telegram-trading-bot",
-    "name": "alfred-telegram-trading-bot",
+    "name": "Alfred Telegram Trading Bot",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 100,
+    "max_bounty": 10000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://t.me/AlfredTradesBot?start=hackenproof",
+          "type": "other"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -2350,14 +2409,27 @@
   },
   {
     "id": "camino-network-protocol",
-    "name": "camino-network-protocol",
+    "name": "Camino Network Protocol",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 50,
+    "max_bounty": 50000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://github.com/chain4travel/caminogo",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/chain4travel/caminoethvm",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/chain4travel/camino-node",
+          "type": "protocol"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -4009,15 +4081,65 @@
   },
   {
     "id": "cryptology",
-    "name": "cryptology",
+    "name": "Cryptology",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 50,
+    "max_bounty": 50000,
     "targets": {
-      "in_scope": [],
-      "out_of_scope": []
+      "in_scope": [
+        {
+          "target": "cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.prod.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "https://docs.cryptology.com/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://play.google.com/store/apps/details?id=com.cryptology.flutter",
+          "type": "mobile-application-android"
+        },
+        {
+          "target": "https://apps.apple.com/us/app/cryptologygo-buy-trade-btc/id6448920037",
+          "type": "mobile-application-ios"
+        },
+        {
+          "target": "https://affiliate.cryptology.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "collector.prod.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "blog.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.dev.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.staging.cryptology.com",
+          "type": "web-application"
+        },
+        {
+          "target": "sandbox.cryptology.com",
+          "type": "web-application"
+        }
+      ]
     }
   },
   {
@@ -4332,27 +4454,69 @@
   },
   {
     "id": "dexx-web-and-mobile",
-    "name": "dexx-web-and-mobile",
+    "name": "DEXX Web & Mobile",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 100,
+    "max_bounty": 10000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://www.dexx.ai/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://www.dexx.ai/download",
+          "type": "mobile-application-ios"
+        },
+        {
+          "target": "https://www.dexx.ai/download",
+          "type": "mobile-application-android"
+        }
+      ],
       "out_of_scope": []
     }
   },
   {
     "id": "dione-protocol",
-    "name": "dione-protocol",
+    "name": "Dione Protocol",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 20000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://github.com/DioneProtocol/odysseygo",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/coreth",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/odysseygo-installer",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/odyssey-cli",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/subnet-evm",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/odyssey-network-runner",
+          "type": "protocol"
+        },
+        {
+          "target": "https://github.com/DioneProtocol/sfxdx__odysseyjs",
+          "type": "protocol"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -4412,14 +4576,27 @@
   },
   {
     "id": "dop-protocol",
-    "name": "dop-protocol",
+    "name": "DOP Protocol",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 500,
+    "max_bounty": 300000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://etherscan.io/address/0x97A9a15168C22B3C137E6381037E1499C8ad0978",
+          "type": "code"
+        },
+        {
+          "target": "https://etherscan.io/address/0x9A3152b61420ed4D5e594c0b48bB932eE41B7376",
+          "type": "code"
+        },
+        {
+          "target": "https://etherscan.io/address/0x953be9C1ADb9c651bBEC52E614c06EEe7FF9AA27",
+          "type": "code"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -4514,14 +4691,19 @@
   },
   {
     "id": "emojicoin-dot-fun-frontend",
-    "name": "emojicoin-dot-fun-frontend",
+    "name": "emojicoin.fun frontend",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 2000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://www.emojicoin.fun/home",
+          "type": "web-application"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -5104,14 +5286,51 @@
   },
   {
     "id": "gear-protocol",
-    "name": "gear-protocol",
+    "name": "Gear Protocol",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 1000,
+    "max_bounty": 25000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/core",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/core-processor",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/core-backend",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/lazy-pages",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/runtime-interface",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/runtime/vara",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/pallets",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/node/authorship",
+          "type": "code"
+        },
+        {
+          "target": "https://github.com/gear-tech/gear/tree/master/node/service",
+          "type": "code"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -5503,7 +5722,7 @@
     "id": "hyperbridge-protocol",
     "name": "Hyperbridge Protocol",
     "public": true,
-    "disabled": false,
+    "disabled": true,
     "managed": null,
     "min_bounty": 200,
     "max_bounty": 50000,
@@ -5604,15 +5823,289 @@
   },
   {
     "id": "inceptionlrt-smart-contracts",
-    "name": "inceptionlrt-smart-contracts",
+    "name": "InceptionLRT Smart Contracts",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 100,
+    "max_bounty": 50000,
     "targets": {
-      "in_scope": [],
-      "out_of_scope": []
+      "in_scope": [
+        {
+          "target": "https://etherscan.io/address/0xf9D9F828989A624423C48b95BC04E9Ae0ef5Ec97",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x8E0789d39db454DBE9f4a77aCEF6dc7c69f6D552",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.zircuit.com/address/0x9eFdE41A87fa4dD47BAa584954e8Abd5b8bdBfE7",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xA8211B17Ee8cC9C3E739c32710Cc4d6621B360AE",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x11E8808018AfE9343fceB33043f06E1bfbD5d3f3",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.zircuit.com/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "https://etherscan.io/address/0x814CC6B8fd2555845541FB843f37418b05977d8d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x7FA768E035F956c41d6aeaa3Bd857e7E5141CAd5",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://lineascan.build/address/0xd08C3F25862077056cb1b710937576Af899a4959",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://optimistic.etherscan.io/address/0xd08C3F25862077056cb1b710937576Af899a4959",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://arbiscan.io/address/0xd08C3F25862077056cb1b710937576Af899a4959",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xc4181dC7BB31453C4A48689ce0CBe975e495321c",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xC3ADe5aCe1bBb033CcAE8177C12Ecbfa16bD6A9D",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x36B429439AB227fAB170A4dFb3321741c8815e55",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xfa2629B9cF3998D52726994E0FcdB750224D8B9D",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://modescan.io/token/0x5A32d48411387577c26a15775cf939494dA8064A",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://bscscan.com/address/0x5A32d48411387577c26a15775cf939494dA8064A",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://lineascan.build/address/0x5A32d48411387577c26a15775cf939494dA8064A",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xfE715358368416E01d3A961D3a037b7359735d5e",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xBf19Eead55a6B100667f04F8FBC5371E03E8ab2E",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x90E80E25ABDB6205B08DeBa29a87f7eb039023C2",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x57a5a0567187FF4A8dcC1A9bBa86155E355878F2",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x6E17a8b5D33e6DBdB9fC61d758BF554b6AD93322",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/token/0x94B888E11a9E960A9c3B3528EB6aC807B27Ca62E",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xd0ee89d82183D7Ddaef14C6b4fC0AA742F426355",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/token/0xeCf3672A6d2147E2A77f07069Fb48d8Cf6F6Fbf9",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x4878F636A9Aa314B776Ac51A25021C44CAF86bEd",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x9181f633E9B9F15A32d5e37094F4C93b333e0E92",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xA9F8c770661BeE8DF2D026edB1Cb6FF763C780FF",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xfD07fD5EBEa6F24888a397997E262179Bf494336",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x1Aa53BC4Beb82aDf7f5EDEE9e3bBF3434aD59F12",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x80d69e79258FE9D056c822461c4eb0B4ca8802E2",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x295234B7E370a5Db2D2447aCA83bc7448f151161",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/token/0x668308d77be3533c909a692302Cb4D135Bf8041C",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://fraxscan.com/address/0xE162075a1C0Ac7e985253972bEcA5e83Da3BBaa4",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xC0660932C5dCaD4A1409b7975d147203B1e9A2B6",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/token/0xda9b11cd701e10c2ec1a284f80820edd128c5246",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://bscscan.com/address/0x3059a337b134Cc89851c8DE18A00D880fa1D5519",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xC6Cc133477f63D9c0C53D1eF7DA83fa250778DB4",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xf21014B114bb976F890E15c19900cE9bE5Fb1e12",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x016E074Ca7304b815E29A9b9d8CF7a5603DA2A5f",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x1AEe5EC60fc79B669f11FE368fDe789E267649e2",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xeFaF124849b11b513C35350CD8643d29DE49c2ba",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x50253dc4a01c6408Fab9646e804FCbFDb74e3E4c",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://fraxscan.com/address/0x157743261C3ba961e92421b268A881AeCe450d41",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xC7373753E8991cEa030B01D580c53dDA4DA31D18",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x74D1984A64F447371Be4019920180b52A33aDAdD",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://bscscan.com/address/0xB2B446386633C6746B0a2735FB57edBb066c5878",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0x46199cAa0e453971cedf97f926368d9E5415831a",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/token/0xf073bac22dab7faf4a3dd6c6189a70d54110525c",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://modescan.io/token/0x5A7a183B6B44Dc4EC2E3d2eF43F98C5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://lineascan.build/token/0x5a7a183b6b44dc4ec2e3d2ef43f98c5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/token/0x5a7a183b6b44dc4ec2e3d2ef43f98c5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://bscscan.com/address/0x5A7a183B6B44Dc4EC2E3d2eF43F98C5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://arbiscan.io/address/0x5a7a183b6b44dc4ec2e3d2ef43f98c5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://optimistic.etherscan.io/address/0x5A7a183B6B44Dc4EC2E3d2eF43F98C5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://www.oklink.com/xlayer/address/0x5a7a183b6b44dc4ec2e3d2ef43f98c5152b1d76d",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://etherscan.io/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://arbiscan.io/address/0xc00cd5599f7e128fc5ed5563147a45b12e83b3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://blastscan.io/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://bscscan.com/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://fraxscan.com/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://lineascan.build/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://modescan.io/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://optimistic.etherscan.io/address/0xC00cD5599F7E128FC5Ed5563147a45B12e83B3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "https://www.oklink.com/xlayer/address/0xc00cd5599f7e128fc5ed5563147a45b12e83b3ac",
+          "type": "bridge"
+        },
+        {
+          "target": "http://etherscan.io/address/0xD496417a50DB34279631e0aF459493Cf9685F529",
+          "type": "smart-contract"
+        },
+        {
+          "target": "http://etherscan.io/address/0xF07052b5A61bbcc8d14a8567494ae8AD688641F9",
+          "type": "smart-contract"
+        }
+      ]
     }
   },
   {
@@ -5635,14 +6128,219 @@
   },
   {
     "id": "init-capital-smart-contracts",
-    "name": "init-capital-smart-contracts",
+    "name": "INIT Capital Smart Contracts",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 100,
+    "max_bounty": 100000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://dev.init.capital/contract-addresses/blast",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://dev.init.capital/contract-addresses/mantle",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xf8B8552D52986F06Ffaf14Bc88bfCF6DCBDbA05D?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x995b3D3CF83d5A0040b56b0201d3d2Db6E369DBF?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x1dBD1e94373b3163F4376d6ae1A39DB9fdA334cB?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x423bB7577BCf594df986D9646B44D3144b3329FD?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xf3416748553EA93643aa8B5A7879F2C40018002b?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x7928419135cE5427858F0F5c0cbA3151b9b14f81?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xDDC99aeef7D5F87118A3A2636F7D0FB6c60daCF3?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xCE3292cA5AbbdFA1Db02142A67CFFc708530675a?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x7d2b278b8ef87bEb83AeC01243ff2Fed57456042?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x06cAb8cbD9bb02dB40eBa963A8C38d4C5924dA84?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x917A9fA5606e7Bb6a9Bf7eb0AbB00FE152D3DC14?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x497949e7a3cD1352980a1b2c27dA27b5A71C94bD?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x51AB74f8B03F0305d8dcE936B473AB587911AEC4?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x9c9F28672C4A8Ad5fb2c9Aca6d8D68B02EAfd552?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x44949636f778fAD2b139E665aee11a2dc84A2976?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x00A55649E597d463fD212fBE48a3B40f0E227d06?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xadA66a8722B5cdfe3bC504007A5d793e7100ad09?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x5071c003bB45e49110a905c1915EbdD2383A89dF?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xf084813F1be067d980a0171F067f084f27B3F63A?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x3282437C436eE6AA9861a6A46ab0822d82581b1c?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x59448551523A4d244f26759e48d83e432Ed1FDBF?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x71e0B2E5DDcDd509D1dA7029b09D310c108B2cF6?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xF25E438eFad5a865A72f9FE39Ffd9aeC1F18398e?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x0959a65AB35cbF335AbAdC7793e2E8CAC81aE7e4?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x00fA41248F6c3A26863ec56634Fe78Ad4E4748EC?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0x32f533EAbD0B128e7EbE391DcC3F012701618B62?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xEEd8A04876ceeE12DDaf4Fd1eb59663A62D9BE34?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://explorer.mantle.xyz/address/0xF525F9a23DB5Fa9BeA0f64E5427A103752977A0C?tab=contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xf62e7c831fc41c93b61c04c24152c433d6553236",
+          "type": "web3"
+        },
+        {
+          "target": "https://blastscan.io/address/0xf683Ce59521AA464066783d78e40CD9412f33D21#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x4B246c4C41c4e5eC1d4A8453c313cbc57Bf0993A#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xa7d36f2106b5a5D528a7e2e7a3f436d703113A10#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xA0e172f8BdC18854903959b8f7f73F0D332633fe#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x57200D2B0C36244B3c8EBf99e5724c7536cea2F7#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xD97Bb363b5B925cF95acD7c463045750514C68C1#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xe31686E5590E4FD5D5418Fe3c4e9368EfD75e2eF#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xed9d7E89309B060e876098F4695aB9fd3011904b#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x265DAA697489968AEbd650c665F4Fb241b560785#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x56Fba2cC045C02d7adAE5A9dfDce795900b2860E#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xC02819a157320Ba2859951A1dfc1a5E76c424dD4#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x85babafa73c3499247d937f7abb877e0e6250f68#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x5313428df205273dcd4100b2fbc0803aba13ff28#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xD20989EB39348994AA99F686bb4554090d0C09F3#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xc5EaC92633aF47c0023Afa0116500ab86FAB430F#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x027296054f8181fbc0df26174e7640652bb28b40#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x17f18794ecE38EE3F17Ab7Bcc41CF99486A3B85c#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x72ee68fc1d6650b32314188321e92a8b4f3b552a#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0x95b8640e5a9a496427D089b14F6736de212852D0#code",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://blastscan.io/address/0xD501a57d404a4beDB2c911512D79b9087Ad6bf39#code",
+          "type": "smart-contract"
+        }
+      ],
       "out_of_scope": []
     }
   },
@@ -7856,11 +8554,7 @@
     "targets": {
       "in_scope": [
         {
-          "target": "https://github.com/ref-finance/ref-contracts",
-          "type": "smart-contract"
-        },
-        {
-          "target": "https://github.com/ref-finance/boost-farm",
+          "target": "TBD",
           "type": "smart-contract"
         }
       ],
@@ -9092,14 +9786,187 @@
   },
   {
     "id": "swap-dot-io-smart-contracts",
-    "name": "swap-dot-io-smart-contracts",
+    "name": "Swap.io Smart Contracts",
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 5000,
     "targets": {
-      "in_scope": [],
+      "in_scope": [
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/collect_fund_fee.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/collect_protocol_fee.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/create_operation_account.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/mod.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/transfer_reward_owner.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/update_amm_config.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/update_operation_account.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/admin/update_pool_status.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/close_position.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/collect_remaining_rewards.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/create_pool.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/decrease_liquidity.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/increase_liquidity.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/initialize_reward.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/mod.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/open_position.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/set_reward_params.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/swap.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/swap_router_base_in.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/instructions/update_reward_info.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/big_num.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/fixed_point_64.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/full_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/liquidity_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/mod.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/sqrt_price_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/swap_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/tick_array_bit_map.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/tick_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/libraries/unsafe_math.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/config.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/mod.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/operation_account.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/oracle.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/personal_position.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/pool.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/protocol_position.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/states/tick_array.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/util/mod.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/util/system.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/util/token.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/error.rs",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/swap-dot-io/swap-io-clmm/blob/586ca2beb81721b33ae1f2975b8f016cf242c492/programs/amm/src/lib.rs",
+          "type": "smart-contract"
+        }
+      ],
       "out_of_scope": []
     }
   },
