@@ -5722,10 +5722,10 @@
     "id": "hyperbridge-protocol",
     "name": "Hyperbridge Protocol",
     "public": true,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
-    "min_bounty": 200,
-    "max_bounty": 50000,
+    "min_bounty": 500,
+    "max_bounty": 10000,
     "targets": {
       "in_scope": [
         {
@@ -8477,10 +8477,6 @@
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-adapters/contracts",
-          "type": "smart-contract"
-        },
-        {
           "target": "https://github.com/redstone-finance/rust-sdk/tree/main/crates/redstone",
           "type": "smart-contract"
         },
@@ -8502,10 +8498,6 @@
         },
         {
           "target": "https://app.redstone.finance/app/feeds",
-          "type": "smart-contract"
-        },
-        {
-          "target": "https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/on-chain-relayer",
           "type": "smart-contract"
         }
       ],
@@ -8554,7 +8546,19 @@
     "targets": {
       "in_scope": [
         {
-          "target": "TBD",
+          "target": "https://github.com/hackenproof-public/rhea-contracts",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/hackenproof-public/rnear-contract",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/hackenproof-public/boost-farm",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/hackenproof-public/burrowland",
           "type": "smart-contract"
         }
       ],
@@ -11886,11 +11890,20 @@
           "type": "web-application"
         },
         {
-          "target": "*.zmo.com",
+          "target": "https://api.zmo.com",
           "type": "web-application"
+        },
+        {
+          "target": "https://play.google.com/store/apps/details?id=com.zmo.app",
+          "type": "mobile-application-android"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any Third Party Service",
+          "type": "web-application"
+        }
+      ]
     }
   },
   {
