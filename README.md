@@ -35,11 +35,11 @@ Types used: `web-application`, `wildcard`, `api`, `mobile-application`, `mobile-
 | Platform | File | Workflow | Status |
 |---|---|---|---|
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
-| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
+| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | **disabled** since 2026-10-29: program pages now require a login; data frozen |
 | Bugbop | `data/bugbop_data.json` | `bugbop.yml` | validated on a real run |
 | WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | validated on a real run |
 | Bugzero | `data/bugzero_data.json` | `bugzero.yml` | validated on a real run |
-| CrowdSwarm | `data/crowdswarm_data.json` | `crowdswarm.yml` | implemented from real API responses, to be validated on the first real run |
+| CrowdSwarm | `data/crowdswarm_data.json` | `crowdswarm.yml` | validated on a real run |
 
 ## Platforms not covered
 

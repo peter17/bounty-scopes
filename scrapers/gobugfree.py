@@ -1,5 +1,11 @@
 """GoBugFree - https://gobugfree.com
 
+DISABLED since 2026-10-29: the site moved program pages to
+app.gobugfree.com/engagements/<org>/<slug>, which requires a login (Keycloak) and whose
+robots.txt is "Disallow: /". The public /programs listing only shows names now, so this
+scraper finds 0 programs and keeps the previous data file. The scheduled workflow is off;
+the findings below describe the site as it was before.
+
 Reconnaissance findings:
   * /programs lists the programs (bug bounties, VDPs, EDU programs, CTF events).
     The footer also links to /programs/trust, which is NOT a program.

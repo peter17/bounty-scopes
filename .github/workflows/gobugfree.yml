@@ -1,10 +1,9 @@
 name: update-gobugfree
 
+# The daily schedule ("43 5 * * *") is disabled: since late October 2026, GoBugFree
+# program pages require a login (and app.gobugfree.com/robots.txt disallows everything),
+# so the scraper finds 0 programs. See scrapers/gobugfree.py. Manual runs only.
 on:
-  schedule:
-    # Once a day (UTC). Use a different minute for each platform so that the
-    # workflows do not all push at exactly the same time.
-    - cron: "43 5 * * *"
   workflow_dispatch:
     inputs:
       debug:
