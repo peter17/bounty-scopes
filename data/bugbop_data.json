@@ -95,6 +95,61 @@
     }
   },
   {
+    "id": "213748e1-3919-4da1-9249-c694e533324b",
+    "name": "Kurodyne",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 500,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://kurodyne.com",
+          "type": "web-application"
+        },
+        {
+          "target": "kurodyne.com",
+          "type": "web-application"
+        },
+        {
+          "target": "kurodyne.com: The web app, its APIs and OAuth endpoints, and image transformation routes",
+          "type": "other"
+        },
+        {
+          "target": "mcp.kurodyne.com",
+          "type": "web-application"
+        },
+        {
+          "target": "mcp.kurodyne.com: The Catalog, Seller, and Admin MCP servers",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "status.kurodyne.com and bounce.kurodyne.com, except subdomain takeover through Kurodyne's DNS records",
+          "type": "other"
+        },
+        {
+          "target": "kurodyne.com/api/debug",
+          "type": "api"
+        },
+        {
+          "target": "kurodyne.com/api/health",
+          "type": "api"
+        },
+        {
+          "target": "Third-party platforms, such as Stripe, Supabase, Cloudflare, DigitalOcean, Google, and AI providers, except Kurodyne's configuration of them",
+          "type": "other"
+        },
+        {
+          "target": "Products sold on Kurodyne, and sellers' own websites and software",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
     "id": "419648da-8643-4f02-8c86-d63bc500867c",
     "name": "Gleam.io's Bugbop program",
     "public": false,
