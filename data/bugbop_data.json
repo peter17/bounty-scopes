@@ -131,14 +131,6 @@
           "type": "other"
         },
         {
-          "target": "kurodyne.com/api/debug",
-          "type": "api"
-        },
-        {
-          "target": "kurodyne.com/api/health",
-          "type": "api"
-        },
-        {
           "target": "Third-party platforms, such as Stripe, Supabase, Cloudflare, DigitalOcean, Google, and AI providers, except Kurodyne's configuration of them",
           "type": "other"
         },
