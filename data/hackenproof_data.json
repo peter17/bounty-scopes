@@ -6064,7 +6064,12 @@
           "type": "web-application"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "### Support ticket system: no testing (effective 30 Oct 2026)",
+          "type": "web-application"
+        }
+      ]
     }
   },
   {
@@ -8837,6 +8842,44 @@
       "in_scope": [
         {
           "target": "https://blog.whitebit.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "whitechain",
+    "name": "Whitechain",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 200,
+    "max_bounty": 10000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/whitechain-labs/whitechain-bootstrap/tree/main",
+          "type": "protocol"
+        },
+        {
+          "target": "Smart Contracts",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://rpc.whitechain.io",
+          "type": "web-application"
+        },
+        {
+          "target": "wss://rpc.whitechain.io/ws",
+          "type": "web-application"
+        },
+        {
+          "target": "http://bridge.whitechain.io",
+          "type": "web-application"
+        },
+        {
+          "target": "explorer.whitechain.io",
           "type": "web-application"
         }
       ],
