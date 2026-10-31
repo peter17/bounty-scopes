@@ -123,6 +123,14 @@
         {
           "target": "mcp.kurodyne.com: The Catalog, Seller, and Admin MCP servers",
           "type": "other"
+        },
+        {
+          "target": "mta-sts.kurodyne.com",
+          "type": "web-application"
+        },
+        {
+          "target": "mta-sts.kurodyne.com: The MTA-STS policy that mail servers fetch before delivering mail to kurodyne.com",
+          "type": "other"
         }
       ],
       "out_of_scope": [
