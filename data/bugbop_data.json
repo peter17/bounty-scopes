@@ -240,6 +240,85 @@
     }
   },
   {
+    "id": "7da3ca9e-300c-4bae-a287-d5fdeb3f727b",
+    "name": "Tappr - Bounty Program",
+    "public": false,
+    "disabled": true,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://usetappr.com/",
+          "type": "web-application"
+        },
+        {
+          "target": "bugbop-272jbm.tappr.life",
+          "type": "web-application"
+        },
+        {
+          "target": "bugbop-272jbm.tappr.life — Northbay admin at /admin and consumer product passports",
+          "type": "other"
+        },
+        {
+          "target": "bugbop-272jbm.api.tappr.life",
+          "type": "web-application"
+        },
+        {
+          "target": "cdn.tappr.life/tenants/bugbop-272jbm/",
+          "type": "web-application"
+        },
+        {
+          "target": "cdn.tappr.life/tenants/bugbop-272jbm/ — CDN objects within this path only",
+          "type": "other"
+        },
+        {
+          "target": "*.onetappr.com",
+          "type": "wildcard"
+        },
+        {
+          "target": "demo.tappr.life",
+          "type": "web-application"
+        },
+        {
+          "target": "demo.api.tappr.life",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "The following are off limits:",
+          "type": "other"
+        },
+        {
+          "target": "Every Tappr tenant and host other than the assets explicitly authorized above",
+          "type": "other"
+        },
+        {
+          "target": "All other *.tappr.life hosts, including API hosts, which may serve real customers",
+          "type": "other"
+        },
+        {
+          "target": "*.int.usetappr.com",
+          "type": "wildcard"
+        },
+        {
+          "target": "The usetappr.com marketing site, blogs, and landing pages",
+          "type": "other"
+        },
+        {
+          "target": "Any content on cdn.tappr.life outside /tenants/bugbop-272jbm/",
+          "type": "other"
+        },
+        {
+          "target": "Employee devices, personal or social accounts, and physical infrastructure",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
     "id": "867e047f-c918-4f35-9d6c-09cce96d053a",
     "name": "Bugbop",
     "public": true,
