@@ -243,10 +243,10 @@
     "id": "7da3ca9e-300c-4bae-a287-d5fdeb3f727b",
     "name": "Tappr - Bounty Program",
     "public": false,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 750,
     "targets": {
       "in_scope": [
         {
