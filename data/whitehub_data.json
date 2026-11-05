@@ -299,19 +299,6 @@
     }
   },
   {
-    "id": "vndc",
-    "name": "VNDC",
-    "public": false,
-    "disabled": true,
-    "managed": true,
-    "min_bounty": null,
-    "max_bounty": null,
-    "targets": {
-      "in_scope": [],
-      "out_of_scope": []
-    }
-  },
-  {
     "id": "zblibrary",
     "name": "Android-ZBLibrary",
     "public": true,
