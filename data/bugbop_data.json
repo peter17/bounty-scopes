@@ -355,6 +355,77 @@
     }
   },
   {
+    "id": "d0caf5ea-eead-4794-9d3c-f161c4793212",
+    "name": "Tuple Bug Bounty Program",
+    "public": false,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 25000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://tuple.app",
+          "type": "web-application"
+        },
+        {
+          "target": "staging.tuple.app",
+          "type": "web-application"
+        },
+        {
+          "target": "staging.tuple.app: the staging website and API.",
+          "type": "other"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "target": "SPF/DMARC policies, and password, email, or account policies such as email verification, reset-link expiration, or password complexity.",
+          "type": "other"
+        },
+        {
+          "target": "Logout CSRF, autocomplete on web forms, and missing flags on non-sensitive cookies.",
+          "type": "other"
+        },
+        {
+          "target": "Attacks requiring physical access, a rooted mobile device, an overlay tool such as tapjacking, or a victim installing non-standard software or otherwise taking steps to make themselves susceptible.",
+          "type": "other"
+        },
+        {
+          "target": "Vulnerabilities affecting outdated browsers or platforms, and XSS on sites outside the listed scope.",
+          "type": "other"
+        },
+        {
+          "target": "Social engineering of employees or contractors, and physical attacks against our property or data centers.",
+          "type": "other"
+        },
+        {
+          "target": "For findings that are otherwise in scope, the following require a reproducible exploit with demonstrated security impact. Configuration values, scanner results, and hypothetical attacks alone are insufficient:",
+          "type": "other"
+        },
+        {
+          "target": "A known-vulnerable library, missing security best practices, or insecure SSL/TLS ciphers.",
+          "type": "other"
+        },
+        {
+          "target": "Missing security headers or CSRF tokens. For missing CSRF tokens, show a sensitive action that isn’t protected.",
+          "type": "other"
+        },
+        {
+          "target": "Host-header injection, including spoofing of X-Forwarded-Host or similar headers.",
+          "type": "other"
+        },
+        {
+          "target": "Findings from automated tools or scans that haven’t been manually validated.",
+          "type": "other"
+        },
+        {
+          "target": "Exposed banners or version information, unless the version is vulnerable.",
+          "type": "other"
+        }
+      ]
+    }
+  },
+  {
     "id": "d5bd18a3-fd0e-45d6-8eb8-99ebb3c6222d",
     "name": "SyncEzy Bug Bounty Program",
     "public": true,
