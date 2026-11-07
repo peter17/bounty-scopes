@@ -189,7 +189,7 @@
     "id": "6cd18c88-7066-431b-a595-0d9ec9c94bf4",
     "name": "NowSecure Bug Bounty",
     "public": true,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
     "min_bounty": null,
     "max_bounty": null,
@@ -198,16 +198,37 @@
         {
           "target": "https://www.nowsecure.com/",
           "type": "web-application"
+        },
+        {
+          "target": "https://nowsecure.com",
+          "type": "web-application"
+        },
+        {
+          "target": "*.nowsecure.com",
+          "type": "wildcard"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any services hosted by third parties, unless they impact the security of our primary assets",
+          "type": "other"
+        },
+        {
+          "target": "Physical offices and infrastructure",
+          "type": "other"
+        },
+        {
+          "target": "Employee social media accounts",
+          "type": "other"
+        }
+      ]
     }
   },
   {
     "id": "72c99729-4525-4fff-8c1d-3b6690df77d6",
     "name": "Acquire Bug Bounty",
     "public": true,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
     "min_bounty": null,
     "max_bounty": null,
@@ -216,16 +237,49 @@
         {
           "target": "https://acquireglobal.com",
           "type": "web-application"
+        },
+        {
+          "target": "acquireglobal.com",
+          "type": "web-application"
+        },
+        {
+          "target": "acquire.co.nz",
+          "type": "web-application"
+        },
+        {
+          "target": "acquireit.com.au",
+          "type": "web-application"
+        },
+        {
+          "target": "api.acquireglobal.com",
+          "type": "api"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any services hosted by third parties, unless they impact the security of our primary assets.",
+          "type": "other"
+        },
+        {
+          "target": "Marketing pages (e.g., blog, landing pages).",
+          "type": "other"
+        },
+        {
+          "target": "Physical offices and infrastructure.",
+          "type": "other"
+        },
+        {
+          "target": "Employee social media accounts.",
+          "type": "other"
+        }
+      ]
     }
   },
   {
     "id": "7cd5f471-e6ea-4700-ba1f-ab591b9c2595",
     "name": "Leda Bug Bounty Program",
     "public": false,
-    "disabled": true,
+    "disabled": false,
     "managed": null,
     "min_bounty": null,
     "max_bounty": null,
@@ -236,7 +290,20 @@
           "type": "web-application"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any services hosted by third parties, unless they impact the security of our primary assets.",
+          "type": "other"
+        },
+        {
+          "target": "Physical offices and infrastructure.",
+          "type": "other"
+        },
+        {
+          "target": "Employee social media accounts.",
+          "type": "other"
+        }
+      ]
     }
   },
   {
@@ -331,9 +398,26 @@
         {
           "target": "https://bugbop.com",
           "type": "web-application"
+        },
+        {
+          "target": "*.bugbop.com",
+          "type": "wildcard"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any services hosted by third parties, unless they impact the security of our primary assets",
+          "type": "other"
+        },
+        {
+          "target": "Denial of Service (DoS) attacks",
+          "type": "other"
+        },
+        {
+          "target": "Social engineering attacks",
+          "type": "other"
+        }
+      ]
     }
   },
   {
@@ -349,9 +433,30 @@
         {
           "target": "https://github.com/fleetdm/fleet",
           "type": "other"
+        },
+        {
+          "target": "https://fleetdm.com/docs/rest-api/rest-api",
+          "type": "web-application"
         }
       ],
-      "out_of_scope": []
+      "out_of_scope": [
+        {
+          "target": "Any services hosted by third parties, unless they impact the security of our primary assets.",
+          "type": "other"
+        },
+        {
+          "target": "Marketing pages (e.g., blog, landing pages).",
+          "type": "other"
+        },
+        {
+          "target": "Physical offices and infrastructure.",
+          "type": "other"
+        },
+        {
+          "target": "Employee social media accounts.",
+          "type": "other"
+        }
+      ]
     }
   },
   {
