@@ -97,11 +97,12 @@ def test_prose_urls_are_not_targets_only_main_url_is():
     assert p["name"] == "Gleam.io's Bugbop program" and p["id"] == GLEAM
 
 
-def test_paused_program_takes_bounty_from_rewards_table_and_is_disabled_and_restricted():
+def test_paused_program_is_an_active_vdp_and_restricted():
     c = bugbop.parse_listing(LISTING_HTML)[LEDA]
     p = bugbop.parse_program(GLEAM_HTML, LEDA, c)
-    assert p["disabled"] is True and p["public"] is False
-    assert (p["min_bounty"], p["max_bounty"]) == (0, 1200)
+    assert p["disabled"] is False and p["public"] is False
+    assert (p["min_bounty"], p["max_bounty"]) == (None, None)  # NOT the Rewards table amounts
+    assert targets(p) == [("https://getleda.com", "web-application")]
 
 
 def test_swag_program_has_no_bounty_and_github_url_is_other():
@@ -124,6 +125,31 @@ def test_explicit_scope_headings_are_read():
     assert [e["target"] for e in p["targets"]["out_of_scope"]] == [
         "blog.acme.com", "Third-party services", "legacy.acme.com"]  # NOT staging.acme.com (Exclusions) nor docs.acme.com (intro)
     assert all("docs.acme.com" not in t for t, _ in targets(p))
+
+
+BOLD_HEADINGS_HTML = """
+<html><head><title>Bugbop</title></head><body>
+<h2>Program Description &amp; Scope</h2>
+<div class="prose"><p>This is Bugbop's Bug Bounty program, hosted on Bugbop itself!</p>
+<h2>Program Scope</h2><p>Please read this whole page before submitting.</p>
+<p><strong>In-Scope Assets</strong></p>
+<ul><li>Main Web Application: <a href="https://bugbop.com/">https://bugbop.com</a></li>
+<li>Publicly Accessible Subdomains: *.bugbop.com</li></ul>
+<p><strong>Out-of-Scope Assets</strong></p>
+<ul><li>Social engineering attacks</li></ul>
+<p><strong>Vulnerabilities We're Interested In</strong></p><ul><li>Cross-Site Scripting (XSS)</li></ul>
+<p><strong>How We Pay</strong></p>
+<ul><li><strong>Medium</strong> e.g. XSS on bugbop.com, minor API issues</li></ul></div>
+<h2>Rewards</h2><table><tr><td>Critical</td><td>$500</td></tr></table>
+</body></html>
+"""
+
+
+def test_bold_paragraphs_are_headings():
+    p = bugbop.parse_program(BOLD_HEADINGS_HTML, "bugbop", {"name": "Bugbop", "url": "https://bugbop.com",
+                                                            "visibility": "Public", "bounty_text": "$0 - $500"})
+    assert targets(p) == [("https://bugbop.com", "web-application"), ("*.bugbop.com", "wildcard")]
+    assert targets(p, "out_of_scope") == [("Social engineering attacks", "other")]
 
 
 def test_login_wall_keeps_main_url_and_warns(caplog):

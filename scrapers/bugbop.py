@@ -14,7 +14,8 @@ Decisions:
     targets. It is only read under an explicit heading ("Scope", "In scope", "Targets",
     "Out of scope", ...), or after an explicit "In scope:" / "Not in scope:" line. Sections such
     as "Exclusions" list vulnerability classes (DoS, spam), not assets, and are ignored.
-  * "Restricted" programs get public=false; "Paused" ones disabled=true.
+  * "Restricted" programs get public=false. "Paused" ones stay active (the scope is still open
+    to reports) but are treated as VDPs: no bounty, even if the Rewards table keeps amounts.
 """
 from __future__ import annotations
 
@@ -23,7 +24,7 @@ import re
 from urllib.parse import urljoin, urlparse
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 from .common import (
     Fetcher,
@@ -114,6 +115,17 @@ def parse_listing(html: str) -> dict[str, dict]:
 # --------------------------------------------------------------------------- detail page
 
 
+def _pseudo_heading(el) -> str | None:
+    """Title of a paragraph made only of bold text ("<p><strong>In-Scope Assets</strong></p>"),
+    which many descriptions use instead of a real heading."""
+    if el.name != "p":
+        return None
+    children = [c for c in el.children if not (isinstance(c, NavigableString) and not c.strip())]
+    if len(children) == 1 and getattr(children[0], "name", None) in ("strong", "b"):
+        return children[0].get_text(" ", strip=True) or None
+    return None
+
+
 def _description_sections(soup: BeautifulSoup) -> list[tuple[str | None, list[str]]] | None:
     """[(heading title or None, lines)] of the "Program Description & Scope" block."""
     start = soup.find(
@@ -127,6 +139,9 @@ def _description_sections(soup: BeautifulSoup) -> list[tuple[str | None, list[st
             title = el.get_text(" ", strip=True)
             if _PAGE_SECTION_RE.match(title):
                 break
+            sections.append((title, []))
+            continue
+        if title := _pseudo_heading(el):
             sections.append((title, []))
             continue
         sections[-1][1].extend(own_lines(el))
@@ -156,10 +171,11 @@ def parse_program(html: str, pid: str, card: dict | None = None) -> dict:
     name = card.get("name") or (soup.title.get_text(strip=True) if soup.title else pid)
     bounty_text = card.get("bounty_text", "")
 
-    # Bounty: the listing range if parsable, else the min/max of the Rewards table
-    # (the listing says "Paused" for paused programs but the table keeps the amounts).
+    # Bounty: the listing range if parsable, else the min/max of the Rewards table.
+    # Paused bounties make it a VDP: the table keeps the amounts, but they are not paid.
+    paused = "paused" in bounty_text.lower()
     min_b, max_b = parse_bounty_range([bounty_text])
-    if min_b is None and max_b is None:
+    if min_b is None and max_b is None and not paused:
         min_b, max_b = parse_bounty_range(_rewards_cells(soup))
 
     in_scope: list[dict] = []
@@ -186,7 +202,7 @@ def parse_program(html: str, pid: str, card: dict | None = None) -> dict:
         id=pid,
         name=name,
         public=card.get("visibility", "Public") != "Restricted",
-        disabled="paused" in bounty_text.lower(),
+        disabled=False,
         managed=None,
         min_bounty=min_b,
         max_bounty=max_b,
@@ -196,7 +212,7 @@ def parse_program(html: str, pid: str, card: dict | None = None) -> dict:
     log.debug(
         "  %s (%s): %d in scope, %d out of scope, bounty %s-%s%s%s",
         name, pid[:8], len(program["targets"]["in_scope"]), len(program["targets"]["out_of_scope"]),
-        min_b, max_b, ", restricted" if not program["public"] else "", ", paused" if program["disabled"] else "",
+        min_b, max_b, ", restricted" if not program["public"] else "", ", paused" if paused else "",
     )
     return program
 

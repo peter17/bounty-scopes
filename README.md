@@ -96,7 +96,8 @@ asset. The description is prose, so its URLs are **not** read as targets unless 
 explicit heading (`Scope`, `In scope`, `Targets`, `Out of scope`...) or after an explicit
 `In scope:` / `Not in scope:` line. Sections such as `Exclusions` list vulnerability classes
 (DoS, spam), not assets, and are ignored. `Restricted` programs get `public: false`, programs with
-`Bounty: Paused` get `disabled: true` (their amounts then come from the Rewards table).
+`Bounty: Paused` stay active (`disabled: false`) as VDPs: no bounty, even if the Rewards table
+keeps amounts.
 
 ### WhiteHub
 
