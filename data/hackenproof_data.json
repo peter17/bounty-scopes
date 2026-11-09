@@ -2433,10 +2433,6 @@
           "type": "web-application"
         },
         {
-          "target": "https://docs.citrea.xyz",
-          "type": "web-application"
-        },
-        {
           "target": "https://explorer.mainnet.citrea.xyz",
           "type": "web-application"
         }
@@ -2448,6 +2444,10 @@
         },
         {
           "target": "Cache poisoning without malicious injection or redirections",
+          "type": "web-application"
+        },
+        {
+          "target": "docs.citrea.xyz",
           "type": "web-application"
         }
       ]
@@ -2919,7 +2919,7 @@
     "disabled": false,
     "managed": null,
     "min_bounty": 500,
-    "max_bounty": 200000,
+    "max_bounty": 50000,
     "targets": {
       "in_scope": [
         {
@@ -4577,7 +4577,7 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": 250,
+    "min_bounty": 100,
     "max_bounty": 5000,
     "targets": {
       "in_scope": [
