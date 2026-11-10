@@ -312,8 +312,8 @@
     "public": false,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 750,
     "targets": {
       "in_scope": [
         {
