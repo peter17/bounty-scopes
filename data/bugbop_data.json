@@ -121,7 +121,7 @@
           "type": "web-application"
         },
         {
-          "target": "mcp.kurodyne.com: The Catalog, Seller, and Admin MCP servers",
+          "target": "mcp.kurodyne.com: The Catalog, Seller Console, and Admin MCP servers",
           "type": "other"
         },
         {
@@ -130,6 +130,14 @@
         },
         {
           "target": "mta-sts.kurodyne.com: The MTA-STS policy that mail servers fetch before delivering mail to kurodyne.com",
+          "type": "other"
+        },
+        {
+          "target": "kurodyne.supabase.co",
+          "type": "web-application"
+        },
+        {
+          "target": "kurodyne.supabase.co: Kurodyne's access policies, database functions, Edge Functions, Auth configuration, and Storage rules",
           "type": "other"
         }
       ],
@@ -191,8 +199,8 @@
     "public": true,
     "disabled": false,
     "managed": null,
-    "min_bounty": null,
-    "max_bounty": null,
+    "min_bounty": 0,
+    "max_bounty": 1000,
     "targets": {
       "in_scope": [
         {
@@ -312,8 +320,8 @@
     "public": false,
     "disabled": false,
     "managed": null,
-    "min_bounty": 0,
-    "max_bounty": 750,
+    "min_bounty": null,
+    "max_bounty": null,
     "targets": {
       "in_scope": [
         {
