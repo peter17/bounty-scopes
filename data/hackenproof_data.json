@@ -8528,7 +8528,8 @@
     "min_bounty": 0,
     "max_bounty": 20000,
     "targets": {
-      "in_scope": [
+      "in_scope": [],
+      "out_of_scope": [
         {
           "target": "https://apps.apple.com/us/app/ult-trade-stocks-crypto/id1512048310",
           "type": "mobile-application-ios"
@@ -8541,8 +8542,7 @@
           "target": "https://api.cronos.com",
           "type": "api"
         }
-      ],
-      "out_of_scope": []
+      ]
     }
   },
   {
