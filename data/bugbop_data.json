@@ -143,7 +143,7 @@
       ],
       "out_of_scope": [
         {
-          "target": "status.kurodyne.com and bounce.kurodyne.com, except subdomain takeover through Kurodyne's DNS records",
+          "target": "status.kurodyne.com, bounce.kurodyne.com, and merch.kurodyne.com with its subdomains, except subdomain takeover through Kurodyne's DNS records",
           "type": "other"
         },
         {
