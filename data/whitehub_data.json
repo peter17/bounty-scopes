@@ -6,7 +6,7 @@
     "disabled": false,
     "managed": true,
     "min_bounty": 0,
-    "max_bounty": 500,
+    "max_bounty": 300,
     "targets": {
       "in_scope": [
         {
@@ -166,7 +166,7 @@
     "disabled": false,
     "managed": true,
     "min_bounty": 0,
-    "max_bounty": 500,
+    "max_bounty": 200,
     "targets": {
       "in_scope": [
         {
