@@ -6690,6 +6690,44 @@
     }
   },
   {
+    "id": "quantova",
+    "name": "Quantova",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 0,
+    "max_bounty": 3000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://github.com/Quantova/Q-Crypto",
+          "type": "protocol"
+        },
+        {
+          "target": "http://github.com/Quantova/Quantova-Chain",
+          "type": "protocol"
+        },
+        {
+          "target": "http://github.com/Quantova/QRC-CONSENSUS",
+          "type": "protocol"
+        },
+        {
+          "target": "http://github.com/Quantova/QVM",
+          "type": "protocol"
+        },
+        {
+          "target": "http://github.com/Quantova/Quanta-Smart-Contract-language",
+          "type": "smart-contract"
+        },
+        {
+          "target": "http://github.com/Quantova/q-prover",
+          "type": "protocol"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
     "id": "raiffeisen-web-and-mobile",
     "name": "Raiffeisen Web & Mobile",
     "public": true,
