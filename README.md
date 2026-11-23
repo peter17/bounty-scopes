@@ -40,6 +40,7 @@ Types used: `web-application`, `wildcard`, `api`, `mobile-application`, `mobile-
 | WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | validated on a real run |
 | Bugzero | `data/bugzero_data.json` | `bugzero.yml` | validated on a real run |
 | CrowdSwarm | `data/crowdswarm_data.json` | `crowdswarm.yml` | validated on a real run |
+| VulnScope | `data/vulnscope_data.json` | `vulnscope.yml` | validated on a real run |
 
 ## Platforms not covered
 
@@ -118,6 +119,15 @@ template and is not read. The API gives a `minimum_bounties` but no currency and
 the currency is USD (confirmed on the platform, `MINIMUM_BOUNTY_CURRENCY` in
 `scrapers/bugzero.py`) and `max_bounty` is always `null`. The API has no status field either, so
 `disabled` is always `false`. Only the `Domain` type has been seen; unknown types are kept and logged at INFO.
+
+### VulnScope
+
+VulnScope has a public JSON API (`api.vulnscope.com`): `/api/v1/programs/publics` lists the programs
+and `/api/v1/programs/publics/<slug>` gives `targets[]` (one line each, in `description`).
+There is no out-of-scope list; the markdown `description` is prose and is **not read** (some
+programs publish test credentials there). The bounty is the min/max of the strictly positive
+`rewards[].amount` (programs paying in points have `null`). The API gives no currency: USD is
+**assumed** (`REWARD_CURRENCY` in `scrapers/vulnscope.py`, unconfirmed).
 
 ### CrowdSwarm
 
