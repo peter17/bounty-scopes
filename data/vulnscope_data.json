@@ -1,0 +1,212 @@
+[
+  {
+    "id": "8-8-computer-security-conference",
+    "name": "8.8 Computer Security Conference",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 200,
+    "max_bounty": 300,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.8dot8.org/",
+          "type": "web-application"
+        },
+        {
+          "target": "*.8dot8.org",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "aim-international-consulting-services",
+    "name": "AIM International Consulting & Services",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "aimics.net",
+          "type": "web-application"
+        },
+        {
+          "target": "*.aimics.net",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "bazit",
+    "name": "Bazit",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://dev.bazit.cl/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "campo-de-marte",
+    "name": "Campo de Marte",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.campodemarte.cl",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "mes-de-la-ciberseguridad",
+    "name": "Mes de la Ciberseguridad",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.mesdelaciberseguridad.cl",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "mis-fondos-mutuos-simulador",
+    "name": "Mis Fondos Mutuos - Simulador",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.misfondosmutuos.cl/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "nievelab-pronostico-de-nieve-e-inteligencia-de-montana-para-el-mundo",
+    "name": "NieveLab - Pronóstico de nieve e inteligencia de montaña para el mundo",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.nievelab.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "payzen",
+    "name": "Payzen",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://www.payzen.cl/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "secureconsent-programa-de-seguridad",
+    "name": "SecureConsent – Programa de Seguridad",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://secureconsent.cl/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "vulnscope",
+    "name": "Vulnscope",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 1000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "https://sandbox-app.vulnscope.com/",
+          "type": "web-application"
+        },
+        {
+          "target": "https://sandbox-landing.vulnscope.com/",
+          "type": "web-application"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
+    "id": "whilolab",
+    "name": "Whilolab",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": null,
+    "max_bounty": null,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "*.whilolab.cl",
+          "type": "wildcard"
+        }
+      ],
+      "out_of_scope": []
+    }
+  }
+]
