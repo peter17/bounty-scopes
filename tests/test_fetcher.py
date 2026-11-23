@@ -81,6 +81,11 @@ def test_robots_disallow_is_respected(server):
         f.get(f"{server}/private")
 
 
+def test_respect_robots_false_is_explicit_opt_out(server):
+    f = common.Fetcher(server, delay=0, backoff=0, respect_robots=False)
+    assert f.get(f"{server}/private") is not None  # would raise RobotsDisallowed by default
+
+
 def test_dump_html_saves_raw_pages(server, tmp_path, monkeypatch):
     monkeypatch.setattr(common, "DUMP_DIR", tmp_path)
     f = common.Fetcher(server, delay=0, backoff=0)

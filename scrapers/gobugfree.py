@@ -1,27 +1,30 @@
 """GoBugFree - https://gobugfree.com
 
-DISABLED since 2026-10-29: the site moved program pages to
-app.gobugfree.com/engagements/<org>/<slug>, which requires a login (Keycloak) and whose
-robots.txt is "Disallow: /". The public /programs listing only shows names now, so this
-scraper finds 0 programs and keeps the previous data file. The scheduled workflow is off;
-the findings below describe the site as it was before.
+How the site works (checked 2026-11-23):
+  * https://gobugfree.com/programs lists the programs. Each card links to a public page
+    https://app.gobugfree.com/public/engagements/<org>/<slug> (readable without login).
+    Programs that need a login only appear as /login?redirectTo=... links: they are skipped.
+  * A public program page is server-side rendered with stable `data-*` hooks:
+      - hero: title, status badge ("Active"...), tags ("Bug Bounty" / "VDP", "Public",
+        "Requires: ID verification");
+      - `[data-program-scope]`: one `[data-scope-asset="<title>"]` block per asset, with a type
+        tag (Web / Mobile / API) and a free-text description (`[data-scope-asset-description]`);
+      - `[data-bounty-table]`: severity / CVSS / reward range (bug bounties only).
+  * There is no structured target: each customer writes titles and descriptions by hand
+    ("*.example.com", "Website: example.com", "Not in Scope" ...), so targets are extracted
+    heuristically, see scopetext.py.
 
-Reconnaissance findings:
-  * /programs lists the programs (bug bounties, VDPs, EDU programs, CTF events).
-    The footer also links to /programs/trust, which is NOT a program.
-  * /programs/<slug> is server-side rendered, with <h2> sections:
-    "Scopes" (free text: "Targets:" / "Not in scope:" lists) and
-    "Bounty Levels" (table, e.g. "CHF 2000-3000").
-  * Some programs (e.g. raiffeisen-bb) show only their description to anonymous
-    visitors: no Scopes section. They are kept, with an empty scope and a warning.
-
-Scope extraction is heuristic, see scopetext.py.
+robots.txt: app.gobugfree.com/robots.txt is "Disallow: /" (it also covers /public/). The
+repository owner decided on 2026-11-23 to read these public pages anyway (listing on
+gobugfree.com is read with robots.txt honoured). The crawl stays gentle: 1 request/second,
+identifiable User-Agent, read-only, ~30 pages a day. Remove `respect_robots=False` below to
+go back to honouring the file.
 """
 from __future__ import annotations
 
 import logging
 import re
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -35,133 +38,138 @@ from .common import (
     progress,
     run_cli,
 )
-from .htmltext import mark_line_breaks, own_lines as _own_lines
+from .htmltext import mark_line_breaks, own_lines
 from .scopetext import ASSET_BREAK, entries_from_asset_titles, split_scope_lines
 
 log = logging.getLogger("scrapers.gobugfree")
 
 PLATFORM = "gobugfree"
 BASE_URL = "https://gobugfree.com"
+APP_URL = "https://app.gobugfree.com"
 LIST_URL = f"{BASE_URL}/programs"
 
-# /programs/<slug> links that are not programs.
-NOT_PROGRAMS = {"trust"}
-
-_PROGRAM_RE = re.compile(r"^/programs/([^/?#]+)/?$")
-_HEADING_TAGS = ["h1", "h2", "h3"]
-
-
-def parse_listing(html: str) -> dict[str, str]:
-    """Return {slug: card text} in order of appearance.
-
-    The card text (anchor text) carries the tags shown on the listing
-    ("Paused", "Vulnerability Disclosure Program", "CTF", "EDU Program", ...).
-    """
-    soup = BeautifulSoup(html, "html.parser")
-    cards: dict[str, str] = {}
-    for a in soup.find_all("a", href=True):
-        m = _PROGRAM_RE.match(urlparse(a["href"]).path)
-        if not m or m.group(1) in NOT_PROGRAMS:
-            continue
-        text = " ".join(a.get_text(" ", strip=True).split())
-        slug = m.group(1)
-        cards[slug] = f"{cards.get(slug, '')} {text}".strip()
-    return cards
-
-
-# Real section titles of a program page. Any other heading inside "Scopes" (asset titles such
-# as "Abacus-ERP") is just a line of text: it must not end the section.
-_SECTION_TITLE_RE = re.compile(
-    r"^\s*(description|rules|scopes?|procedure|legal|bounty levels|leaderboard|hall of fame|footer)\s*$",
+_PROGRAM_PATH_RE = re.compile(r"^/public/engagements/([^/?#]+)/([^/?#]+)/?$")
+_INFO_TITLE_RE = re.compile(
+    r"^\s*(source code|documentation|docs|downloads?|credentials|(test )?accounts?|notes?|"
+    r"important notes?|information|faq|contact|rules)\s*$",
     re.I,
 )
-def _section(soup: BeautifulSoup, title: str, section_id: str | None = None):
-    """All tags of a page section.
-
-    The real pages wrap each section in <section aria-labelledby="scopes"> (also
-    "description", "rules", "legal"...): that is the most reliable boundary. For anything else
-    we fall back to "everything between the heading `title` and the next real section heading".
-    """
-    if section_id:
-        wrapper = soup.find("section", attrs={"aria-labelledby": section_id})
-        if wrapper is not None:
-            return wrapper.find_all(True)
-    pattern = re.compile(rf"^\s*{title}\s*$", re.I)
-    heading = soup.find(
-        lambda t: t.name in _HEADING_TAGS and pattern.match(t.get_text(" ", strip=True))
-    )
-    if heading is None:
-        return None
-    out = []
-    for el in heading.find_all_next(True):
-        if el.name == "h1" or (el.name == "h2" and _SECTION_TITLE_RE.match(el.get_text(" ", strip=True))):
-            break
-        out.append(el)
-    return out
+_OUT_TITLE_RE = re.compile(r"^\s*(not\s+in[\s-]*scope|out[\s-]*of[\s-]*scope)\s*:?\s*$", re.I)
 
 
-def _is_asset_title(el) -> bool:
-    """Title of a structured asset: <li><div><div class="font-semibold">title</div>...."""
-    return el.name == "div" and "font-semibold" in (el.get("class") or []) and el.find_parent("li") is not None
+def parse_listing(html: str) -> tuple[dict[str, str], list[str]]:
+    """Return ({slug: public page URL} in order of appearance, [slugs needing a login])."""
+    soup = BeautifulSoup(html, "html.parser")
+    public: dict[str, str] = {}
+    private: list[str] = []
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if href.startswith("/login"):
+            # "/login?redirectTo=https://app.gobugfree.com/public/engagements/<org>/<slug>"
+            target = href.split("redirectTo=", 1)[-1]
+            m = _PROGRAM_PATH_RE.match(urlparse(target).path)
+            if m and m.group(2) not in public and m.group(2) not in private:
+                private.append(m.group(2))
+            continue
+        parsed = urlparse(href)
+        if parsed.netloc != urlparse(APP_URL).netloc:
+            continue
+        m = _PROGRAM_PATH_RE.match(parsed.path)
+        if m:
+            public.setdefault(m.group(2), f"{APP_URL}{parsed.path.rstrip('/')}")
+    return public, [s for s in private if s not in public]
 
 
-def parse_program(html: str, slug: str, card_text: str = "") -> dict:
+def _mobile_type(text: str) -> str:
+    """Platform named in `text`; generic when none or both ("eID App (Android / iOS)")."""
+    low = text.lower()
+    ios = bool(re.search(r"\bios\b|apple", low))
+    android = "android" in low
+    if ios and not android:
+        return "mobile-application-ios"
+    if android and not ios:
+        return "mobile-application-android"
+    return "mobile-application"
+
+
+# An asset titled with a bare host pattern the generic extractor does not catch: "g-*.0.example.ch".
+_GLOB_HOST_RE = re.compile(r"^(?=[^\s]*\*)[\w*\-]+(?:\.[\w*\-]+)+$")
+
+
+def _asset_entries(asset) -> tuple[list[dict], list[dict], str]:
+    """(in_scope, out_of_scope, title) of one `[data-scope-asset]` block."""
+    title = " ".join((asset.get("data-scope-asset") or "").split())
+    tag_el = asset.find(class_="gbf-tag")
+    tag = tag_el.get_text(" ", strip=True).lower() if tag_el else ""
+    desc = asset.find(attrs={"data-scope-asset-description": True})
+    lines = [ASSET_BREAK, title]
+    if desc is not None:
+        for el in [desc, *desc.find_all(True)]:
+            lines.extend(own_lines(el))
+    in_scope, out_scope = split_scope_lines(lines)
+    if tag == "mobile":
+        # Package ids / store names found in the title are apps, not web hosts.
+        for e in in_scope:
+            if e["type"] == "web-application" and not e["target"].lower().startswith("http"):
+                e["type"] = _mobile_type(title)
+    if _GLOB_HOST_RE.match(title) and not any(title in e["target"] for e in in_scope + out_scope):
+        in_scope.append({"target": title, "type": "wildcard"})
+    if not in_scope and tag == "mobile" and not (_INFO_TITLE_RE.match(title) or _OUT_TITLE_RE.match(title)):
+        # "Android App", "ch.example.mycard: Android App": the title is the target.
+        in_scope = [{"target": title, "type": _mobile_type(title)}]
+    return in_scope, out_scope, title
+
+
+def parse_program(html: str, slug: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     mark_line_breaks(soup)
 
-    h1 = soup.find("h1")
-    name = h1.get_text(" ", strip=True) if h1 else slug
+    title_el = soup.find(class_="gbf-program-hero-title") or soup.find("h1")
+    name = title_el.get_text(" ", strip=True) if title_el else slug
+    tags = [t.get_text(" ", strip=True).lower() for t in soup.find_all(class_="gbf-program-hero-tag")]
+    badge = soup.find(class_="gbf-badge")
+    status = badge.get_text(" ", strip=True).lower() if badge else "active"
 
     in_scope: list[dict] = []
     out_scope: list[dict] = []
-    elements = _section(soup, "Scopes?", "scopes")
-    if elements is None:
-        log.warning("%s: no 'Scopes' section (hidden for anonymous visitors?)", slug)
-    else:
-        lines: list[str] = []
-        for el in elements:
-            if _is_asset_title(el):
-                lines.append(ASSET_BREAK)
-            lines.extend(_own_lines(el))
-        in_scope, out_scope = split_scope_lines(lines)
-        if not in_scope:
-            # Structured asset list (<li><div class="font-semibold">Asset name</div>...): a VDP
-            # may have a single asset described by a statement and no domain at all.
-            titles = [el.get_text(" ", strip=True) for el in elements if _is_asset_title(el)]
-            in_scope = entries_from_asset_titles(titles)
-            if in_scope:
-                log.debug("  %s: no target found, using %d asset title(s) as scope", slug, len(in_scope))
-        if not in_scope:
-            # Typical cause: the author listed targets after a "Not in scope" line without
-            # an "In scope" header. We cannot tell which is which, and publishing targets
-            # as out of scope would be wrong, so we publish nothing for this program.
-            log.warning(
-                "%s: 'Scopes' section found but no in-scope target identified: scope left "
-                "empty, needs manual review (%d out-of-scope entries discarded)",
-                slug, len(out_scope),
-            )
-            out_scope = []
+    titles: list[str] = []
+    scope = soup.find(attrs={"data-program-scope": True})
+    assets = scope.find_all(attrs={"data-scope-asset": True}) if scope else []
+    if not assets:
+        log.warning("%s: no scope asset found (page layout changed?)", slug)
+    for asset in assets:
+        ins, outs, title = _asset_entries(asset)
+        in_scope.extend(ins)
+        out_scope.extend(outs)
+        titles.append(title)
+    if not in_scope:
+        # A VDP may have a single asset described by a statement and no domain at all.
+        in_scope = entries_from_asset_titles([t for t in titles if not _INFO_TITLE_RE.match(t)])
+        if in_scope:
+            log.debug("  %s: no target found, using %d asset title(s) as scope", slug, len(in_scope))
+    if assets and not in_scope:
+        log.warning(
+            "%s: scope assets found but no in-scope target identified: scope left empty, needs "
+            "manual review (%d out-of-scope entries discarded)", slug, len(out_scope),
+        )
+        out_scope = []
 
+    is_vdp = "vdp" in tags or any("vulnerability disclosure" in t for t in tags)
     min_b = max_b = None
-    bounty_rows = _section(soup, "Bounty Levels", "bounty-levels")
-    if bounty_rows:
-        cells = [c for tr in bounty_rows if tr.name == "tr" for c in tr.find_all("td")[1:]]
-        min_b, max_b = parse_bounty_range([c.get_text(" ", strip=True) for c in cells])
+    if not is_vdp:
+        cells = [
+            tr.find_all("td")[-1].get_text(" ", strip=True)
+            for table in soup.find_all(attrs={"data-bounty-table": True})
+            for tr in table.find_all("tr")
+            if tr.find_all("td")
+        ]
+        min_b, max_b = parse_bounty_range(cells)
 
-    card = card_text.lower()
-    page_text = soup.get_text(" ").lower()
-    is_vdp = "vulnerability disclosure" in card or "no bug bounties are paid" in page_text
-    if is_vdp:
-        min_b = max_b = None
-    restricted = bool(re.search(r"\bedu\b|registered students|students only|edu-id", card))
-    # Listed publicly but invite-only ("Get invited to this private bug bounty program").
-    private = "invited to this private" in page_text
-    restricted = restricted or private
     program = make_program(
         id=slug,
         name=name,
-        public=not restricted,
-        disabled="paused" in card,
+        public="public" in tags,
+        disabled=status != "active",
         managed=None,
         min_bounty=min_b,
         max_bounty=max_b,
@@ -169,41 +177,40 @@ def parse_program(html: str, slug: str, card_text: str = "") -> dict:
         out_of_scope=out_scope,
     )
     log.debug(
-        "  %s: %d in scope, %d out of scope, bounty %s-%s%s%s",
+        "  %s: %d in scope, %d out of scope, bounty %s-%s%s, status %s",
         slug, len(program["targets"]["in_scope"]), len(program["targets"]["out_of_scope"]),
-        min_b, max_b, ", VDP" if is_vdp else "", ", restricted" if restricted else "",
+        min_b, max_b, ", VDP" if is_vdp else "", status,
     )
     return program
 
 
 def crawl(limit: int | None = None, only: list[str] | None = None) -> list[dict]:
-    fetcher = Fetcher(BASE_URL, delay=1.0)
-
     log.info("Listing page: %s", LIST_URL)
-    cards = parse_listing(fetcher.get(LIST_URL))
-    log.info("  %d programs found on the listing", len(cards))
+    public, private = parse_listing(Fetcher(BASE_URL, delay=1.0).get(LIST_URL))
+    log.info("  %d public program pages, %d need a login", len(public), len(private))
+    for slug in private:
+        log.info("  skipping %s (login required)", slug)
 
-    # CTF events are not bug bounty programs.
-    for slug in [s for s, text in cards.items() if re.search(r"\bctf\b", text, re.I)]:
-        log.info("  skipping %s (CTF event)", slug)
-        del cards[slug]
+    # The program pages live on app.gobugfree.com, whose robots.txt disallows everything:
+    # deliberate exception decided by the repository owner, see the module docstring.
+    fetcher = Fetcher(APP_URL, delay=1.0, respect_robots=False)
 
     if only:
         for slug in only:
-            if slug not in cards:
-                log.warning("%s is not on the listing (card tags such as Paused/EDU unknown)", slug)
-        slugs = list(only)
+            if slug not in public:
+                log.warning("%s is not a public program of the listing", slug)
+        slugs = [s for s in only if s in public]
     else:
-        slugs = list(cards)[:limit] if limit else list(cards)
+        slugs = list(public)[:limit] if limit else list(public)
 
     log.info("Fetching %d program pages", len(slugs))
     previous = load_previous(PLATFORM)
     results, failures = [], []
     for i, slug in enumerate(slugs, 1):
-        url = urljoin(BASE_URL + "/", f"programs/{slug}")
+        url = public[slug]
         progress(i, len(slugs), url)
         try:
-            results.append(parse_program(fetcher.get(url), slug, cards.get(slug, "")))
+            results.append(parse_program(fetcher.get(url), slug))
         except requests.RequestException as exc:
             log.warning("Failed on %s: %s", slug, exc)
             failures.append(slug)

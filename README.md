@@ -35,7 +35,7 @@ Types used: `web-application`, `wildcard`, `api`, `mobile-application`, `mobile-
 | Platform | File | Workflow | Status |
 |---|---|---|---|
 | HackenProof | `data/hackenproof_data.json` | `hackenproof.yml` | validated on a real run |
-| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | **disabled** since 2026-10-29: program pages now require a login; data frozen |
+| GoBugFree | `data/gobugfree_data.json` | `gobugfree.yml` | validated on a real run |
 | Bugbop | `data/bugbop_data.json` | `bugbop.yml` | validated on a real run |
 | WhiteHub | `data/whitehub_data.json` | `whitehub.yml` | validated on a real run |
 | Bugzero | `data/bugzero_data.json` | `bugzero.yml` | validated on a real run |
@@ -72,15 +72,15 @@ Some platforms (GoBugFree, ...) have no structured scope: each customer writes i
   yields the clean target **plus** the full line as `other`;
 * out of scope, a target with a remark is a *partial* exclusion (`id.example.com: known issues
   from X`), so only the full line is kept, never a clean out-of-scope domain;
-* GoBugFree pages have two zones inside `<section aria-labelledby="scopes">`: a free-text zone
-  and a list of **structured assets** (`<li><div class="font-semibold">title</div>description`).
-  - each asset restarts in "in scope" mode, so an exclusion paragraph above the list cannot leak
-    onto the assets below it; an asset whose title is `Not in Scope` makes only *its own* lines
-    out of scope; purely informational assets (`Source Code`, `Credentials`, `Documentation`...)
-    are skipped;
+* GoBugFree pages list **assets** (`<div data-scope-asset="title">` with a Web / Mobile / API tag and a
+  free-text description). Each asset restarts in "in scope" mode, so an exclusion paragraph in one
+  asset cannot leak onto the next; an asset titled `Not in Scope` makes only *its own* lines out of
+  scope; purely informational assets (`Source Code`, `Credentials`, `Documentation`...) are skipped;
   - "... out of scope: https://x/*" inside a line puts that URL out of scope without changing the
     mode; a lead-in ending with "out of scope:" switches to out of scope;
   - `host: API` gives type `api`; `<pre>` blocks keep their line breaks;
+  - a `Mobile` asset whose text has no target (`Android App`, `iOS App`) becomes a
+    `mobile-application-android` / `-ios` entry (generic `mobile-application` if both are named);
   - when no target is found, the short asset titles become `other` entries (VDP whose scope is a
     statement);
 * exception: if no target at all was found in scope, short statements under an explicit

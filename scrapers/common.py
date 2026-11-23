@@ -109,8 +109,19 @@ class Fetcher:
     """Polite HTTP client: identifiable User-Agent, robots.txt honoured,
     delay between requests, retries with backoff on 429/5xx."""
 
-    def __init__(self, base_url: str, delay: float = 1.0, timeout: float = 30.0, backoff: float = 2.0):
+    def __init__(
+        self,
+        base_url: str,
+        delay: float = 1.0,
+        timeout: float = 30.0,
+        backoff: float = 2.0,
+        respect_robots: bool = True,
+    ):
+        """`respect_robots=False` skips robots.txt entirely. It exists for one deliberate,
+        documented exception (GoBugFree's public program pages, see scrapers/gobugfree.py);
+        every other scraper keeps the default."""
         self.base_url = base_url.rstrip("/")
+        self.respect_robots = respect_robots
         self.delay = delay
         self.timeout = timeout
         self._last = 0.0
@@ -128,7 +139,8 @@ class Fetcher:
         self.session.mount("http://", HTTPAdapter(max_retries=retry))
 
         self.robots = urllib.robotparser.RobotFileParser()
-        self._load_robots()
+        if respect_robots:
+            self._load_robots()
 
     def _load_robots(self) -> None:
         url = f"{self.base_url}/robots.txt"
@@ -144,7 +156,7 @@ class Fetcher:
             log.debug("robots.txt returned %s: no restrictions assumed", resp.status_code)
 
     def _request(self, method: str, url: str, headers: dict | None = None, json_body=None) -> requests.Response:
-        if not self.robots.can_fetch(USER_AGENT, url):
+        if self.respect_robots and not self.robots.can_fetch(USER_AGENT, url):
             raise RobotsDisallowed(f"robots.txt disallows: {url}")
         wait = self.delay - (time.monotonic() - self._last)
         if wait > 0:
