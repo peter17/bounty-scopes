@@ -188,15 +188,15 @@
           "type": "smart-contract"
         },
         {
-          "target": "https://github.com/1inch/farming/tree/4.0.0",
-          "type": "smart-contract"
-        },
-        {
           "target": "https://github.com/1inch/delegating/tree/2.0.0",
           "type": "smart-contract"
         },
         {
           "target": "https://github.com/1inch/solana-crosschain-protocol/tree/1.1.0",
+          "type": "smart-contract"
+        },
+        {
+          "target": "https://github.com/1inch/solana-crosschain-protocol",
           "type": "smart-contract"
         }
       ],
@@ -2598,7 +2598,7 @@
   },
   {
     "id": "coingecko",
-    "name": "CoinGecko",
+    "name": "Coingecko",
     "public": true,
     "disabled": false,
     "managed": null,
