@@ -488,6 +488,14 @@
         {
           "target": "staging.tuple.app: the staging website and API.",
           "type": "other"
+        },
+        {
+          "target": "Joining or listening to a call without being admitted.",
+          "type": "other"
+        },
+        {
+          "target": "Call content reaching Tuple or other third parties.",
+          "type": "other"
         }
       ],
       "out_of_scope": [
