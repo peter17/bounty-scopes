@@ -71,6 +71,10 @@
     "targets": {
       "in_scope": [
         {
+          "target": "gobugfree.com",
+          "type": "web-application"
+        },
+        {
           "target": "id.gobugfree.com",
           "type": "web-application"
         },
@@ -85,14 +89,6 @@
         {
           "target": "CMS: cms.gobugfree.com (only misconfigurations are in scope)",
           "type": "other"
-        },
-        {
-          "target": "gobugfree.com",
-          "type": "web-application"
-        },
-        {
-          "target": "backend.gobugfree.com",
-          "type": "web-application"
         }
       ],
       "out_of_scope": []
