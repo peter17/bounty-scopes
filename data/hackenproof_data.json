@@ -6766,6 +6766,40 @@
     }
   },
   {
+    "id": "redstone-settle-smart-contracts-api-webapp",
+    "name": "RedStone Settle Smart Contracts, API, Webapp",
+    "public": true,
+    "disabled": false,
+    "managed": null,
+    "min_bounty": 50,
+    "max_bounty": 50000,
+    "targets": {
+      "in_scope": [
+        {
+          "target": "SnapMidas",
+          "type": "smart-contract"
+        },
+        {
+          "target": "SnapOpenEden",
+          "type": "smart-contract"
+        },
+        {
+          "target": "Base code used by both:",
+          "type": "smart-contract"
+        },
+        {
+          "target": "Webapp",
+          "type": "web-application"
+        },
+        {
+          "target": "API",
+          "type": "api"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  {
     "id": "redstone-smart-contracts",
     "name": "RedStone Smart Contracts",
     "public": true,
